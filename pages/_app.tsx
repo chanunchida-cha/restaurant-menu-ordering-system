@@ -3,6 +3,7 @@ import type { ReactElement, ReactNode } from "react";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import Layout from "@/components/layouts/Layout";
 
 const breakpoints = {
   sm: "30em",
@@ -30,7 +31,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <ChakraProvider theme={theme}>
-      {getLayout(<Component {...pageProps} />)}
+      <Layout>{getLayout(<Component {...pageProps} />)}</Layout>
     </ChakraProvider>
   );
 }

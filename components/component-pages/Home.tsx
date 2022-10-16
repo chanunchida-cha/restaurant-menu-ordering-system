@@ -29,9 +29,9 @@ function Home() {
   } = useSWR(`${urlFoods}`, fetcher);
 
   if (error) return <div>failed to load</div>;
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <div>
@@ -46,7 +46,7 @@ function Home() {
             <Text>เนื้อหมู</Text>
             <SimpleGrid columns={{ base: 1, sm: 1, md: 1, xl: 3 }} spacing={5}>
               {food
-                .filter((data: InfoFoods) => {
+                ?.filter((data: InfoFoods) => {
                   return data.category === "pork";
                 })
                 .map((data: InfoFoods) => {
@@ -80,7 +80,7 @@ function Home() {
                               xl: "50%",
                             }}
                           />
-                          <Box p="6">
+                          <Box p="2">
                             <Box display="flex" alignItems="baseline">
                               <Badge
                                 borderRadius="full"

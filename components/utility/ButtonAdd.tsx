@@ -15,13 +15,17 @@ function ButtonAdd() {
   const input = getInputProps();
   return (
     <HStack maxW="320px" mx="auto">
-      <Button {...dec}>-</Button>
+      <Button {...dec} width={{ base: "10px" }}>
+        -
+      </Button>
       <Input
         {...input}
         textAlign="center"
         width={{ base: "50px", sm: "50px", md: "50px", xl: "80px" }}
       />
-      <Button {...inc}>+</Button>
+      <Button {...inc} width={{ base: "10px" }}>
+        +
+      </Button>
     </HStack>
   );
 }
