@@ -8,116 +8,97 @@ const foods =[
       "id":"1",
       "i18n":"สันนอกสไลด์",
       "src":"1.webp",
-      "category":"meat",
-      "sub-catagory":"pork"
+      "category":"pork",
     },    {
       "id":"2",
       "i18n":"สามชั้นสไลด์",
       "src":"2.webp",
-      "category":"meat",
-      "sub-catagory":"pork"
+      "category":"pork",
     },    {
       "id":"3",
       "i18n":"คุโรบูตะสไลด์",
       "src":"3.webp",
-      "category":"meat",
-      "sub-catagory":"pork"
+      "category":"pork",
     },    {
       "id":"4",
       "i18n":"หมูบดทรงเครื่อง",
       "src":"4.webp",
-      "category":"meat",
-      "sub-catagory":"pork"
+      "category":"pork",
     },    {
       "id":"5",
       "i18n":"หมูนุ่ม",
       "src":"5.webp",
-      "category":"meat",
-      "sub-catagory":"pork"
+      "category":"pork",
     },    {
       "id":"6",
       "i18n":"หมูนุ่มโรยงาน",
       "src":"6.webp",
-      "category":"meat",
-      "sub-catagory":"pork"
+      "category":"pork",
     },    {
       "id":"7",
       "i18n":"หมูชาบูพันเห็ดเข็มทอง",
       "src":"7.webp",
-      "category":"meat",
-      "sub-catagory":"pork"
+      "category":"pork",
     },    {
       "id":"8",
       "i18n":"ตับหมู",
       "src":"8.webp",
-      "category":"meat",
-      "sub-catagory":"pork"
+      "category":"pork",
     },    {
       "id":"9",
       "i18n":"เนื้อวัว",
       "src":"9.webp",
-      "category":"meat",
-      "sub-catagory":"beef"
+      "category":"beef",
     },    {
       "id":"10",
       "i18n":"เนื้อสไลด์นำเข้า",
       "src":"10.webp",
-      "category":"meat",
-      "sub-catagory":"beef"
+      "category":"beef",
     },    {
       "id":"11",
       "i18n":"เนื้อไก่สไลด์",
       "src":"11.webp",
-      "category":"meat",
-      "sub-catagory":"chicken"
+      "category":"chicken",
     },    {
       "id":"12",
       "i18n":"   เนื้อปลาสด",
       "src":"12.webp",
-      "category":"meat",
-      "sub-catagory":"seafood"
+      "category":"seafood",
     },    {
       "id":"13",
       "i18n":"   ปลาทรงเครื่อง",
       "src":"13.webp",
-      "category":"meat",
-      "sub-catagory":"seafood"
+      "category":"seafood",
     },    {
       "id":"14",
       "i18n":" หัวปลา",
       "src":"14.webp",
-      "category":"meat",
-      "sub-catagory":"seafood"
+      "category":"seafood",
     },    {
       "id":"15",
       "i18n":" กุุ้ง",
       "src":"15.webp",
-      "category":"meat",
-      "sub-catagory":"seafood"
+      "category":"seafood",
     },    {
       "id":"16",
       "i18n":"หมึกสด",
       "src":"16.webp",
-      "category":"meat",
-      "sub-catagory":"seafood"
+      "category":"seafood",
     },    {
       "id":"17",
       "i18n":"หมึกทรงเครื่อง",
       "src":"17.webp",
-      "category":"meat",
-      "sub-catagory":"seafood"
+      "category":"seafood",
     },    {
       "id":"18",
       "i18n":"หมึกกรอบ",
       "src":"18.webp",
-      "category":"meat",
-      "sub-catagory":"seafood"
+      "category":"seafood",
     },    {
       "id":"19",
       "i18n":"แมงกระพรุน",
       "src":"19.webp",
-      "category":"meat",
-      "sub-catagory":"seafood"
+      "category":"seafood",
     },    {
       "id":"20",
       "i18n":"คริสตัลไข่ปลา",
