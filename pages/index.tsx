@@ -1,6 +1,6 @@
 import Home from "@/components/component-pages/Home";
 import Layout from "@/components/layouts/Layout";
-import { Grid, GridItem, useMediaQuery } from "@chakra-ui/react";
+import { Grid, GridItem, Spinner, useMediaQuery } from "@chakra-ui/react";
 import Image from "next/image";
 import { ReactElement, useEffect, useState } from "react";
 
@@ -8,15 +8,16 @@ import type { NextPageWithLayout } from "./_app";
 
 const Page: NextPageWithLayout = () => {
   const [loading, setLoading] = useState<boolean>(true);
-  const [isMaxWidth767, isMinToMAX] = useMediaQuery([
+  const [isMaxWidth767, isMinToMAX, isDisplay] = useMediaQuery([
     "(max-width: 767px)",
     "(min-width: 767px) and (max-width: 1279px)",
+    "(min-width: 1279px)",
   ]);
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 500);
   }, []);
 
   return (
@@ -30,6 +31,13 @@ const Page: NextPageWithLayout = () => {
               width={"200px"}
               alt="logo"
             />
+          </div>
+        </div>
+      ) : loading && isDisplay ? (
+        <div className="w-screen h-screen bg-white grid grid-cols-3  grid-rows-5 z-50 bg-opacity-50 top-0 left-0 bottom-0 right-0 fixed sticky-0 overflow-y-hidden">
+          <div className="col-start-2 row-start-3  block mx-auto ">
+            {" "}
+            <Spinner size="xl" color="red.500" />
           </div>
         </div>
       ) : (
