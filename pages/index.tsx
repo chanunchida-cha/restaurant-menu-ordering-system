@@ -16,12 +16,12 @@ const Page: NextPageWithLayout = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 2000);
   }, []);
 
   return (
     <>
-      {isMaxWidth767 || isMinToMAX ? (
+      {loading && (isMaxWidth767 || isMinToMAX) ? (
         <div className="w-screen h-screen grid grid-cols-3  grid-rows-5 z-50 bg-[#D52D2C] top-0 left-0 bottom-0 right-0 fixed sticky-0 overflow-y-hidden">
           <div className="col-start-2 row-start-3  block mx-auto ">
             <Image
