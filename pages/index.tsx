@@ -17,7 +17,7 @@ const Page: NextPageWithLayout = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 500);
+    }, 2000);
   }, []);
 
   return (
