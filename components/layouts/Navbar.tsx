@@ -1,9 +1,14 @@
 import React, { ReactElement } from "react";
 import { SimpleGrid, Box, Image, Text } from "@chakra-ui/react";
+import DrawerOrder from "../utility/DrawerOrder";
+import { observer } from "mobx-react-lite";
+import { store } from "store/store";
 
 interface Props {}
 
-function Navbar({}: Props): ReactElement {
+const Navbar = observer(({}: Props): ReactElement => {
+ 
+
   return (
     <SimpleGrid columns={3} mb={10}>
       <Box height="100px">
@@ -28,9 +33,11 @@ function Navbar({}: Props): ReactElement {
           Hai Thi Ter Shabu
         </Text>
       </Box>
-      <Box></Box>
+      <Box>
+        <DrawerOrder />
+      </Box>
     </SimpleGrid>
   );
-}
+});
 
 export default Navbar;
