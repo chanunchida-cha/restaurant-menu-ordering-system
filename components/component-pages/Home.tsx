@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Badge,
   Box,
@@ -13,6 +13,7 @@ import axios from "axios";
 import useSWR from "swr";
 import { InfoFoods, Order } from "@/models/interfaces/TypesFood";
 import ButtonAdd from "../utility/ButtonAdd";
+import DrawerOrder from "../utility/DrawerOrder";
 
 const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 function Home() {
@@ -53,7 +54,9 @@ function Home() {
     );
   };
 
-  console.log(order);
+  useEffect(() => {
+    console.log(order);
+  }, [order]);
 
   // ------------ Device conditon--------------------
   const [isMaxWidth767, isMinToMAX, isDisplay] = useMediaQuery([
@@ -75,8 +78,13 @@ function Home() {
   // ----------------------------------------
 
   return (
-    <div>
+    <div className="z-20">
       <Input placeholder="ค้นหา" focusBorderColor="#EC9191" />
+      <div className=" w-screen h-screen  z-10  grid grid-cols-4  grid-rows-5 fixed sticky-0 left-0 ">
+        <div className=" col-span-4 w-screen h-screen flex justify-center rounded-t-lg row-start-4 bg-white  drop-shadow-2xl  mx-auto ">
+          <DrawerOrder />
+        </div>
+      </div>
       <Tabs>
         <TabList>
           <Tab>ทั้งหมด</Tab>
@@ -95,8 +103,8 @@ function Home() {
                   })
                   ?.map((data: InfoFoods, index: number) => {
                     return (
-                      <>
-                        <div key={index}>
+                      <div key={index}>
+                        <div>
                           <Box
                             borderWidth="1px"
                             borderRadius="lg"
@@ -194,7 +202,7 @@ function Home() {
                             </SimpleGrid>
                           </Box>
                         </div>
-                      </>
+                      </div>
                     );
                   });
               })}

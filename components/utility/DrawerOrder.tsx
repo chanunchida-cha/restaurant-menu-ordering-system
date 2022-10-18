@@ -10,20 +10,26 @@ import {
   useDisclosure,
   Button,
 } from "@chakra-ui/react";
+import { observer } from "mobx-react-lite";
+import { store } from "store/store";
 
-function DrawerOrder() {
+const DrawerOrder = observer(() => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef(null);
   return (
-    <>
+    <div className="mt-5">
+
       <Button
         ref={btnRef}
         colorScheme="teal"
         onClick={onOpen}
-        size={{ base: "sm", sm: "sm", md: "md" }}
+        px={{ base: "130px", sm: "40px" }}
+        // size={{ base: "sm", sm: "sm", md: "md" }}
+   
       >
-        รายการสั่งซื้อ
+        รายการอาหาร
       </Button>
+   
       <Drawer
         isOpen={isOpen}
         placement="right"
@@ -38,12 +44,14 @@ function DrawerOrder() {
           <DrawerBody></DrawerBody>
 
           <DrawerFooter>
-            <Button colorScheme="red.500">ดำเนินการสั่งซื้อ</Button>
+            <Button colorScheme="blue" onClick={() => {}}>
+              ดำเนินการสั่งอาหาร
+            </Button>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
-    </>
+    </div>
   );
-}
+});
 
 export default DrawerOrder;

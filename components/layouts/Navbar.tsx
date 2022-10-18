@@ -33,9 +33,9 @@ const Navbar = observer(({}: Props): ReactElement => {
           Hai Thi Ter Shabu
         </Text>
       </Box>
-      <Box>
+      {/* <Box>
         <DrawerOrder />
-      </Box>
+      </Box> */}
     </SimpleGrid>
   );
 });
