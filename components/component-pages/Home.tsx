@@ -16,18 +16,20 @@ import ButtonAdd from "../utility/ButtonAdd";
 import DrawerOrder from "../utility/DrawerOrder";
 
 const fetcher = (url: string) => axios.get(url).then((res) => res.data);
+const category = [
+  { key: "pork", i18n: "เนื้อหมู" },
+  { key: "beef", i18n: "เนื้อวัว" },
+  { key: "chicken", i18n: "เนื้อไก่" },
+  { key: "seafood", i18n: "อาหารทะเล" },
+  { key: "meatballs", i18n: "ลูกชิ้น" },
+  { key: "vegatable", i18n: "ผัก" },
+  { key: "other", i18n: "อื่นๆ" },
+  { key: "appetizer", i18n: "ของทานเล่น" },
+  { key: "dessert", i18n: "ของหวาน" },
+  { key: "drink", i18n: "เครื่องดื่ม" },
+] as const;
 function Home() {
   const [order, setOrder] = useState([] as Order[]);
-  const category = [
-    "pork",
-    "beef",
-    "chicken",
-    "seafood",
-    "meatballs",
-    "vegatable",
-    "other",
-  ];
-
   const addToCart = (clickedItem: Order) => {
     setOrder((prev) => {
       const isItemInCart = prev.find((item) => item.id === clickedItem.id);
@@ -42,6 +44,8 @@ function Home() {
     });
   };
   const removeFromCart = (id: number) => {
+    console.log("ลบ");
+    
     setOrder((prev) =>
       prev.reduce((ack, item) => {
         if (parseInt(item.id) === id) {
@@ -77,10 +81,12 @@ function Home() {
 
   // ----------------------------------------
 
+
+
   return (
     <div className="z-20">
       <Input placeholder="ค้นหา" focusBorderColor="#EC9191" />
-      <div className=" w-screen h-screen  z-10  grid grid-cols-4  grid-rows-5 fixed sticky-0 left-0 ">
+      <div className=" w-screen h-screen   grid grid-cols-4  grid-rows-5 fixed sticky-0 left-0 ">
         <div className=" col-span-4 w-screen h-screen flex justify-center rounded-t-lg row-start-4 bg-white  drop-shadow-2xl  mx-auto ">
           <DrawerOrder />
         </div>
@@ -92,67 +98,85 @@ function Home() {
 
         <TabPanels>
           <TabPanel>
-            <Text fontSize={20} my={5}>
-              เนื้อหมู
-            </Text>
-            <SimpleGrid columns={{ base: 1, sm: 1, md: 1, xl: 3 }} spacing={5}>
-              {category.map((cate) => {
-                return food
-                  ?.filter((data: InfoFoods) => {
-                    return cate === data.category;
-                  })
-                  ?.map((data: InfoFoods, index: number) => {
-                    return (
-                      <div key={index}>
-                        <div>
-                          <Box
-                            borderWidth="1px"
-                            borderRadius="lg"
-                            overflow="hidden"
-                            display={{
-                              base: "flex",
-                              sm: "flex",
-                              md: "flex",
-                              xl: "block",
-                            }}
-                            alignItems="center"
-                          >
-                            <SimpleGrid
-                              columns={{ base: 2, sm: 2, md: 3, xl: 1 }}
+            {category?.map((cat) => {
+              // const { key } = cat;
+              return (
+                <>
+                  <Text fontSize={20} my={5}>
+                    {cat.i18n}
+                  </Text>
+                  <SimpleGrid
+                    columns={{ base: 1, sm: 1, md: 1, xl: 3 }}
+                    spacing={5}
+                  >
+                    {food?.[cat.key]?.map((data: any, index: number ) => {
+                      return (
+                        <div key={index}>
+                          <div>
+                            <Box
+                              borderWidth="1px"
+                              borderRadius="lg"
+                              overflow="hidden"
+                              display={{
+                                base: "flex",
+                                sm: "flex",
+                                md: "flex",
+                                xl: "block",
+                              }}
+                              alignItems="center"
                             >
-                              <Image
-                                display={{ xl: "block" }}
-                                mx={{ base: "auto", sm: 2, xl: "auto" }}
-                                src={`/images/${data.src}`}
-                                alt={data.i18n}
-                                textAlign="center"
-                                width={{
-                                  base: "80%",
-                                  sm: "60%",
-                                  md: "50%",
-                                  xl: "50%",
-                                }}
-                              />
-                              <Box p="2">
-                                <Box display="flex" alignItems="baseline">
-                                  <Badge
-                                    borderRadius="full"
-                                    px="2"
-                                    colorScheme="teal"
-                                  >
-                                    เนื้อหมู
-                                  </Badge>
-                                </Box>
+                              <SimpleGrid
+                                columns={{ base: 2, sm: 2, md: 3, xl: 1 }}
+                              >
+                                <Image
+                                  display={{ xl: "block" }}
+                                  mx={{ base: "auto", sm: 2, xl: "auto" }}
+                                  src={`/images/${data.src}`}
+                                  alt={data.i18n}
+                                  textAlign="center"
+                                  width={{
+                                    base: "80%",
+                                    sm: "60%",
+                                    md: "50%",
+                                    xl: "50%",
+                                  }}
+                                />
+                                <Box p="2">
+                                  <Box display="flex" alignItems="baseline">
+                                    <Badge
+                                      borderRadius="full"
+                                      px="2"
+                                      colorScheme="teal"
+                                    >
+                                      เนื้อหมู
+                                    </Badge>
+                                  </Box>
 
-                                <Box
-                                  mt="1"
-                                  fontWeight="semibold"
-                                  as="h4"
-                                  lineHeight="tight"
-                                  noOfLines={1}
-                                >
-                                  {data.i18n}
-                                  {isDisplay ? (
+                                  <Box
+                                    mt="1"
+                                    fontWeight="semibold"
+                                    as="h4"
+                                    lineHeight="tight"
+                                    noOfLines={1}
+                                  >
+                                    {data.i18n}
+                                    {isDisplay ? (
+                                      <Box
+                                        pr="10px"
+                                        display={"center"}
+                                        alignItems="center"
+                                        justifyContent={"center"}
+                                      >
+                                        <ButtonAdd
+                                          index={index}
+                                          data={data}
+                                          addToCart={addToCart}
+                                          removeFromCart={removeFromCart}
+                                        />
+                                      </Box>
+                                    ) : null}
+                                  </Box>
+                                  {isMaxWidth767 ? (
                                     <Box
                                       pr="10px"
                                       display={"center"}
@@ -168,7 +192,7 @@ function Home() {
                                     </Box>
                                   ) : null}
                                 </Box>
-                                {isMaxWidth767 ? (
+                                {isMinToMAX ? (
                                   <Box
                                     pr="10px"
                                     display={"center"}
@@ -183,30 +207,17 @@ function Home() {
                                     />
                                   </Box>
                                 ) : null}
-                              </Box>
-                              {isMinToMAX ? (
-                                <Box
-                                  pr="10px"
-                                  display={"center"}
-                                  alignItems="center"
-                                  justifyContent={"center"}
-                                >
-                                  <ButtonAdd
-                                    index={index}
-                                    data={data}
-                                    addToCart={addToCart}
-                                    removeFromCart={removeFromCart}
-                                  />
-                                </Box>
-                              ) : null}
-                            </SimpleGrid>
-                          </Box>
+                              </SimpleGrid>
+                            </Box>
+                          </div>
                         </div>
-                      </div>
-                    );
-                  });
-              })}
-              {/* {food
+                      );
+                    })}
+                  </SimpleGrid>
+                </>
+              );
+            })}
+            {/* {food
                 ?.filter((data: InfoFoods) => {
                   return data.category === "pork";
                 })
@@ -307,7 +318,6 @@ function Home() {
                     </div>
                   );
                 })} */}
-            </SimpleGrid>
           </TabPanel>
         </TabPanels>
       </Tabs>

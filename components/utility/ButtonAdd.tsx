@@ -29,7 +29,7 @@ const ButtonAdd = observer((props: Props) => {
     useNumberInput({
       step: 1,
       defaultValue: 0,
-      min: 0,
+      min: -1,
       max: 10,
     });
 
@@ -46,6 +46,8 @@ const ButtonAdd = observer((props: Props) => {
           setInternalValue(value - 1);
           removeFromCart(parseInt(data.id));
         }}
+        disabled={internalValue === 0 ? true : false}
+        pointerEvents={internalValue === 0 ? "none" : undefined}
       >
         -
       </Button>
@@ -61,7 +63,7 @@ const ButtonAdd = observer((props: Props) => {
         width={{ base: "10px" }}
         onClick={() => {
           setInternalValue(value + 1);
-          addToCart({ ...data, amount: value });
+          addToCart({ ...data, amount: internalValue });
         }}
       >
         +
