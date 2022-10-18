@@ -12,14 +12,14 @@ import { observer } from "mobx-react-lite";
 type Props = {
   index: number;
   data: InfoFoods;
+  addToCart: (clickedItem: Order) => void;
+  removeFromCart: (id: number) => void;
 };
 
 const ButtonAdd = observer((props: Props) => {
-  const { index, data } = props;
+  const { index, data, addToCart, removeFromCart } = props;
   const [value, setValue] = useState(0);
-  const [order, setOrder] = useState([
-    { id: "1", i18n: "", src: "", category: "", amount: NaN },
-  ]);
+
   const [internalValue, setInternalValue] = useControllableState({
     value,
     onChange: setValue,
@@ -37,33 +37,6 @@ const ButtonAdd = observer((props: Props) => {
   const dec = getDecrementButtonProps();
   const input = getInputProps();
 
-  function add() {
-    const i = index + 1;
-    const newData = {
-      id: data.id,
-      i18n: data.i18n,
-      src: data.src,
-      category: data.category,
-      amount: value,
-    };
-    const datas: any = order.map((item) => {
-      // const value = { ...item };
-      return parseInt(item?.id) === i
-        ? ((item.id = data.id),
-          (item.i18n = data.i18n),
-          (item.src = data.src),
-          (item.category = data.category),
-          (item.amount = value))
-        : [...order, { ...newData }];
-    });
-
-    setOrder(datas);
-  }
-
-  useEffect(() => {
-    console.log(order);
-  }, [order]);
-
   return (
     <HStack maxW="320px" mx="auto" key={index}>
       <Button
@@ -71,6 +44,7 @@ const ButtonAdd = observer((props: Props) => {
         width={{ base: "10px" }}
         onClick={() => {
           setInternalValue(value - 1);
+          removeFromCart(parseInt(data.id));
         }}
       >
         -
@@ -87,7 +61,7 @@ const ButtonAdd = observer((props: Props) => {
         width={{ base: "10px" }}
         onClick={() => {
           setInternalValue(value + 1);
-          add();
+          addToCart({ ...data, amount: value });
         }}
       >
         +
