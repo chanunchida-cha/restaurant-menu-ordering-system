@@ -29,9 +29,10 @@ const category = [
   { key: "drink", i18n: "เครื่องดื่ม" },
 ] as const;
 function Home() {
-  const [order, setOrder] = useState([] as Order[]);
+  const [orders, setOrders] = useState([] as Order[]);
+  const [value, setValue] = useState(0);
   const addToCart = (clickedItem: Order) => {
-    setOrder((prev) => {
+    setOrders((prev) => {
       const isItemInCart = prev.find((item) => item.id === clickedItem.id);
       if (isItemInCart) {
         return prev.map((item) =>
@@ -46,7 +47,7 @@ function Home() {
   const removeFromCart = (id: number) => {
     console.log("ลบ");
 
-    setOrder((prev) =>
+    setOrders((prev) =>
       prev.reduce((ack, item) => {
         if (parseInt(item.id) === id) {
           if (item.amount === 1) return ack;
@@ -59,8 +60,8 @@ function Home() {
   };
 
   useEffect(() => {
-    console.log(order);
-  }, [order]);
+    console.log(orders);
+  }, [orders]);
 
   // ------------ Device conditon--------------------
   const [isMaxWidth767, isMinToMAX, isDisplay] = useMediaQuery([
@@ -81,12 +82,21 @@ function Home() {
 
   // ----------------------------------------
 
+  const totalOrder = orders.reduce((prev, cur) => Number(cur.amount) + prev, 0);
+
   return (
     <div className="z-20">
       <Input placeholder="ค้นหา" focusBorderColor="#EC9191" />
-      <div className=" w-screen h-screen   grid grid-cols-4  grid-rows-5 fixed sticky-0 left-0 ">
+      <div className=" w-screen h-[100px] z-50  grid grid-cols-4  grid-rows-1 fixed bottom-0 sticky-0 left-0 ">
         <div className=" col-span-4 w-screen h-screen flex justify-center rounded-t-lg row-start-4 bg-white  drop-shadow-2xl  mx-auto ">
-          <DrawerOrder />
+          <DrawerOrder
+            totalOrder={totalOrder}
+            orders={orders}
+            addToCart={addToCart}
+            removeFromCart={removeFromCart}
+            value={value}
+            setValue={setValue}
+          />
         </div>
       </div>
       <Tabs>
@@ -169,6 +179,8 @@ function Home() {
                                           data={data}
                                           addToCart={addToCart}
                                           removeFromCart={removeFromCart}
+                                          value={value}
+                                          setValue={setValue}
                                         />
                                       </Box>
                                     ) : null}
@@ -185,6 +197,8 @@ function Home() {
                                         data={data}
                                         addToCart={addToCart}
                                         removeFromCart={removeFromCart}
+                                        value={value}
+                                        setValue={setValue}
                                       />
                                     </Box>
                                   ) : null}
@@ -201,6 +215,8 @@ function Home() {
                                       data={data}
                                       addToCart={addToCart}
                                       removeFromCart={removeFromCart}
+                                      value={value}
+                                      setValue={setValue}
                                     />
                                   </Box>
                                 ) : null}

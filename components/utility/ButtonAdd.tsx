@@ -12,13 +12,16 @@ import { observer } from "mobx-react-lite";
 type Props = {
   index: number;
   data: InfoFoods;
+  value:number;
+  setValue:(value:number)=>void
   addToCart: (clickedItem: Order) => void;
   removeFromCart: (id: number) => void;
+ 
 };
 
 const ButtonAdd = observer((props: Props) => {
-  const { index, data, addToCart, removeFromCart } = props;
-  const [value, setValue] = useState(0);
+  const { index, data, addToCart, removeFromCart,value,setValue} = props;
+
 
   const [internalValue, setInternalValue] = useControllableState({
     value,
