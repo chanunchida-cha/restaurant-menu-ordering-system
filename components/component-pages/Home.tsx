@@ -45,7 +45,7 @@ function Home() {
   };
   const removeFromCart = (id: number) => {
     console.log("ลบ");
-    
+
     setOrder((prev) =>
       prev.reduce((ack, item) => {
         if (parseInt(item.id) === id) {
@@ -81,8 +81,6 @@ function Home() {
 
   // ----------------------------------------
 
-
-
   return (
     <div className="z-20">
       <Input placeholder="ค้นหา" focusBorderColor="#EC9191" />
@@ -99,7 +97,6 @@ function Home() {
         <TabPanels>
           <TabPanel>
             {category?.map((cat) => {
-              // const { key } = cat;
               return (
                 <>
                   <Text fontSize={20} my={5}>
@@ -109,7 +106,7 @@ function Home() {
                     columns={{ base: 1, sm: 1, md: 1, xl: 3 }}
                     spacing={5}
                   >
-                    {food?.[cat.key]?.map((data: any, index: number ) => {
+                    {food?.[cat.key]?.map((data: any, index: number) => {
                       return (
                         <div key={index}>
                           <div>
@@ -217,107 +214,6 @@ function Home() {
                 </>
               );
             })}
-            {/* {food
-                ?.filter((data: InfoFoods) => {
-                  return data.category === "pork";
-                })
-                .map((data: InfoFoods, index: number) => {
-                  return (
-                    <div key={index}>
-                      <Box
-                        borderWidth="1px"
-                        borderRadius="lg"
-                        overflow="hidden"
-                        display={{
-                          base: "flex",
-                          sm: "flex",
-                          md: "flex",
-                          xl: "block",
-                        }}
-                        alignItems="center"
-                      >
-                        <SimpleGrid columns={{ base: 2, sm: 2, md: 3, xl: 1 }}>
-                          <Image
-                            display={{ xl: "block" }}
-                            mx={{ base: "auto", sm: 2, xl: "auto" }}
-                            src={`/images/${data.src}`}
-                            alt={data.i18n}
-                            textAlign="center"
-                            width={{
-                              base: "80%",
-                              sm: "60%",
-                              md: "50%",
-                              xl: "50%",
-                            }}
-                          />
-                          <Box p="2">
-                            <Box display="flex" alignItems="baseline">
-                              <Badge
-                                borderRadius="full"
-                                px="2"
-                                colorScheme="teal"
-                              >
-                                เนื้อหมู
-                              </Badge>
-                            </Box>
-
-                            <Box
-                              mt="1"
-                              fontWeight="semibold"
-                              as="h4"
-                              lineHeight="tight"
-                              noOfLines={1}
-                            >
-                              {data.i18n}
-                              {isDisplay ? (
-                                <Box
-                                  pr="10px"
-                                  display={"center"}
-                                  alignItems="center"
-                                  justifyContent={"center"}
-                                >
-                                  <ButtonAdd
-                                    index={index}
-                                    data={data}
-                                    addToCart={addToCart}
-                                  />
-                                </Box>
-                              ) : null}
-                            </Box>
-                            {isMaxWidth767 ? (
-                              <Box
-                                pr="10px"
-                                display={"center"}
-                                alignItems="center"
-                                justifyContent={"center"}
-                              >
-                                <ButtonAdd
-                                  index={index}
-                                  data={data}
-                                  addToCart={addToCart}
-                                />
-                              </Box>
-                            ) : null}
-                          </Box>
-                          {isMinToMAX ? (
-                            <Box
-                              pr="10px"
-                              display={"center"}
-                              alignItems="center"
-                              justifyContent={"center"}
-                            >
-                              <ButtonAdd
-                                index={index}
-                                data={data}
-                                addToCart={addToCart}
-                              />
-                            </Box>
-                          ) : null}
-                        </SimpleGrid>
-                      </Box>
-                    </div>
-                  );
-                })} */}
           </TabPanel>
         </TabPanels>
       </Tabs>
