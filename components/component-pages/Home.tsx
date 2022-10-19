@@ -109,7 +109,7 @@ function Home() {
                     columns={{ base: 1, sm: 1, md: 1, xl: 3 }}
                     spacing={5}
                   >
-                    {food?.[cat.key]?.map((data: any, index: number ) => {
+                    {food?.[cat.key]?.map((data:InfoFoods, index: number ) => {
                       return (
                         <div key={index}>
                           <div>
