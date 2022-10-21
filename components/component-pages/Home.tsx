@@ -11,25 +11,17 @@ import {
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import axios from "axios";
 import useSWR from "swr";
-import { InfoFoods, Order } from "@/models/interfaces/TypesFood";
+import { InfoFoods, Order, OrderFoods } from "@/models/interfaces/TypesFood";
 import ButtonAdd from "../utility/ButtonAdd";
 import DrawerOrder from "../utility/DrawerOrder";
+import ContentPanel from "../utility/ContentPanel";
+import { category } from "@/models/const/category";
 
 const fetcher = (url: string) => axios.get(url).then((res) => res.data);
-const category = [
-  { key: "pork", i18n: "เนื้อหมู" },
-  { key: "beef", i18n: "เนื้อวัว" },
-  { key: "chicken", i18n: "เนื้อไก่" },
-  { key: "seafood", i18n: "อาหารทะเล" },
-  { key: "meatballs", i18n: "ลูกชิ้น" },
-  { key: "vegatable", i18n: "ผัก" },
-  { key: "other", i18n: "อื่นๆ" },
-  { key: "appetizer", i18n: "ของทานเล่น" },
-  { key: "dessert", i18n: "ของหวาน" },
-  { key: "drink", i18n: "เครื่องดื่ม" },
-] as const;
+
 function Home() {
   const [orders, setOrders] = useState([] as Order[]);
+  const order = orders?.map((item) => item);
   const [value, setValue] = useState(0);
   const addToCart = (clickedItem: Order) => {
     setOrders((prev) => {
@@ -50,7 +42,7 @@ function Home() {
     setOrders((prev) =>
       prev.reduce((ack, item) => {
         if (parseInt(item.id) === id) {
-          if (item.amount === 1) return ack;
+          if (item.amount === 0) return ack;
           return [...ack, { ...item, amount: item.amount - 1 }];
         } else {
           return [...ack, item];
@@ -63,21 +55,29 @@ function Home() {
     console.log(orders);
   }, [orders]);
 
-  // ------------ Device conditon--------------------
-  const [isMaxWidth767, isMinToMAX, isDisplay] = useMediaQuery([
-    "(max-width: 767px)",
-    "(min-width: 767px) and (max-width: 1279px)",
-    "(min-width: 1279px)",
-  ]);
-
   // --------- API GET DATA ----------------------
   const urlFoods = process.env.NEXT_PUBLIC_GET_FOODS;
   const {
     data: food,
     error,
     isValidating: loading,
-  } = useSWR(`${urlFoods}`, fetcher);
+  } = useSWR<OrderFoods, any, string>(`${urlFoods}`, fetcher);
 
+  function newData() {
+    setOrders([] as Order[]);
+    for (const data of category) {
+      for (const dataF of food?.[data?.key]!) {
+        const dataf = { ...dataF, amount: 0 };
+        setOrders((prev) => {
+          return [...prev, dataf];
+        });
+      }
+    }
+  }
+  useEffect(() => {
+    if (!food) return;
+    newData();
+  }, [food]);
   if (error) return <div>failed to load</div>;
 
   // ----------------------------------------
@@ -102,135 +102,37 @@ function Home() {
       <Tabs>
         <TabList>
           <Tab>ทั้งหมด</Tab>
+          {category.map((cat, index: number) => {
+            return <Tab key={index}>{cat.i18n}</Tab>;
+          })}
         </TabList>
 
         <TabPanels>
           <TabPanel>
-            {category?.map((cat) => {
-              return (
-                <>
-                  <Text fontSize={20} my={5}>
-                    {cat.i18n}
-                  </Text>
-                  <SimpleGrid
-                    columns={{ base: 1, sm: 1, md: 1, xl: 3 }}
-                    spacing={5}
-                  >
-                    {food?.[cat.key]?.map((data: InfoFoods, index: number) => {
-                      return (
-                        <div key={index}>
-                          <div>
-                            <Box
-                              borderWidth="1px"
-                              borderRadius="lg"
-                              overflow="hidden"
-                              display={{
-                                base: "flex",
-                                sm: "flex",
-                                md: "flex",
-                                xl: "block",
-                              }}
-                              alignItems="center"
-                            >
-                              <SimpleGrid
-                                columns={{ base: 2, sm: 2, md: 3, xl: 1 }}
-                              >
-                                <Image
-                                  display={{ xl: "block" }}
-                                  mx={{ base: "auto", sm: 2, xl: "auto" }}
-                                  src={`/images/${data.src}`}
-                                  alt={data.i18n}
-                                  textAlign="center"
-                                  width={{
-                                    base: "80%",
-                                    sm: "60%",
-                                    md: "50%",
-                                    xl: "50%",
-                                  }}
-                                />
-                                <Box p="2">
-                                  <Box display="flex" alignItems="baseline">
-                                    <Badge
-                                      borderRadius="full"
-                                      px="2"
-                                      colorScheme="teal"
-                                    >
-                                      เนื้อหมู
-                                    </Badge>
-                                  </Box>
-
-                                  <Box
-                                    mt="1"
-                                    fontWeight="semibold"
-                                    as="h4"
-                                    lineHeight="tight"
-                                    noOfLines={1}
-                                  >
-                                    {data.i18n}
-                                    {isDisplay ? (
-                                      <Box
-                                        pr="10px"
-                                        display={"center"}
-                                        alignItems="center"
-                                        justifyContent={"center"}
-                                      >
-                                        <ButtonAdd
-                                          index={index}
-                                          data={data}
-                                          addToCart={addToCart}
-                                          removeFromCart={removeFromCart}
-                                          value={value}
-                                          setValue={setValue}
-                                        />
-                                      </Box>
-                                    ) : null}
-                                  </Box>
-                                  {isMaxWidth767 ? (
-                                    <Box
-                                      pr="10px"
-                                      display={"center"}
-                                      alignItems="center"
-                                      justifyContent={"center"}
-                                    >
-                                      <ButtonAdd
-                                        index={index}
-                                        data={data}
-                                        addToCart={addToCart}
-                                        removeFromCart={removeFromCart}
-                                        value={value}
-                                        setValue={setValue}
-                                      />
-                                    </Box>
-                                  ) : null}
-                                </Box>
-                                {isMinToMAX ? (
-                                  <Box
-                                    pr="10px"
-                                    display={"center"}
-                                    alignItems="center"
-                                    justifyContent={"center"}
-                                  >
-                                    <ButtonAdd
-                                      index={index}
-                                      data={data}
-                                      addToCart={addToCart}
-                                      removeFromCart={removeFromCart}
-                                      value={value}
-                                      setValue={setValue}
-                                    />
-                                  </Box>
-                                ) : null}
-                              </SimpleGrid>
-                            </Box>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </SimpleGrid>
-                </>
-              );
-            })}
+            <ContentPanel
+              food={food}
+              order={order}
+              orders={orders}
+              addToCart={addToCart}
+              removeFromCart={removeFromCart}
+              type={"all"}
+            />
           </TabPanel>
+          {category.map((cat, index: number) => {
+            return (
+              <TabPanel key={index}>
+                {" "}
+                <ContentPanel
+                  food={food}
+                  order={order}
+                  orders={orders}
+                  addToCart={addToCart}
+                  removeFromCart={removeFromCart}
+                  type={cat.key}
+                />
+              </TabPanel>
+            );
+          })}
         </TabPanels>
       </Tabs>
     </div>

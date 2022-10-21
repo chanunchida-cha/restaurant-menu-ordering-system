@@ -57,9 +57,54 @@ const DrawerOrder = observer((props: Props) => {
           <DrawerHeader my={10}>รายการอาหาร</DrawerHeader>
 
           <DrawerBody>
-            {orders?.map((order) => {
+            {orders
+              .filter((item) => {
+                return item.amount > 0;
+              })
+              .map((order, index: number) => {
+                return (
+                  <div className="grid grid-cols-5 border-b-2" key={index}>
+                    <div>
+                      <Image
+                        display={{ xl: "block" }}
+                        mx={{ base: "auto", sm: 2, xl: "auto" }}
+                        src={`/images/${order.src}`}
+                        alt={order.i18n}
+                        textAlign="center"
+                        width={{
+                          base: "80%",
+                          sm: "60%",
+                          md: "50%",
+                          xl: "100%",
+                        }}
+                      />
+                    </div>
+                    <div className="col-span-2 grid grid-rows-3">
+                      <span className="row-start-2 inline-block align-middle">
+                        {order.i18n}
+                      </span>
+                    </div>
+                    <div className="col-span-2 grid grid-rows-3">
+                      <div className="row-start-2">
+                        <ButtonAdd
+                          index={parseInt(order.id)}
+                          data={order}
+                          order={order}
+                          orders={orders}
+                          list
+                          addToCart={addToCart}
+                          removeFromCart={removeFromCart}
+                          // value={value}
+                          // setValue={setValue}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            {/* {orders?.map((order, index: number) => {
               return (
-                <div className="grid grid-cols-5 border-b-2">
+                <div className="grid grid-cols-5 border-b-2" key={index}>
                   <div>
                     <Image
                       display={{ xl: "block" }}
@@ -83,8 +128,10 @@ const DrawerOrder = observer((props: Props) => {
                   <div className="col-span-2 grid grid-rows-3">
                     <div className="row-start-2">
                       <ButtonAdd
-                        index={Number(order.id)}
+                        index={index}
                         data={order}
+                        order={order}
+                        list
                         addToCart={addToCart}
                         removeFromCart={removeFromCart}
                         value={value}
@@ -94,7 +141,7 @@ const DrawerOrder = observer((props: Props) => {
                   </div>
                 </div>
               );
-            })}
+            })} */}
           </DrawerBody>
 
           <DrawerFooter>

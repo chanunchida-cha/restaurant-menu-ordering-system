@@ -8,3 +8,7 @@ export interface InfoFoods {
 export interface Order extends InfoFoods {
   amount: number;
 }
+
+export interface OrderFoods {
+  [key:string]:InfoFoods[]
+}
