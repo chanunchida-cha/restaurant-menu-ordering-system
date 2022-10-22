@@ -15,17 +15,10 @@ const Page: NextPageWithLayout = () => {
   ]);
 
   function loadingCondition() {
-    if (isMaxWidth767 || isMinToMAX) {
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-      }, 6000);
-    } else {
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-      }, 250);
-    }
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
   }
   useEffect(() => {
     loadingCondition();
@@ -51,9 +44,8 @@ const Page: NextPageWithLayout = () => {
             <Spinner size="xl" color="red.500" />
           </div>
         </div>
-      ) : (
-        <Home />
-      )}
+      ) : null}
+      <Home />
     </>
   );
 };
