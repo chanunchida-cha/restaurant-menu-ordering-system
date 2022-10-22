@@ -10,6 +10,7 @@ import {
   DrawerCloseButton,
   useDisclosure,
   Button,
+  useToast,
 } from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
 import { store } from "store/store";
@@ -19,12 +20,21 @@ import ButtonAdd from "./ButtonAdd";
 type Props = {
   totalOrder: number;
   orders: Order[];
+  clearAmount: () => void;
   addToCart: (clickedItem: Order) => void;
   removeFromCart: (id: number) => void;
 };
 
 const DrawerOrder = observer((props: Props) => {
-  const { orders, totalOrder, addToCart, removeFromCart } = props;
+  const { orders, totalOrder, addToCart, removeFromCart, clearAmount } = props;
+  const toast = useToast({
+    title: "สั่งรายการอาหารเรียบร้อยแล้ว",
+    description: "ลูกค้าจะได้รับอาหารไม่เกิน 5 นาที",
+    status: "success",
+    position: "top",
+    duration: 3000,
+    isClosable: true,
+  });
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef(null);
   const result = orders.filter((item) => {
@@ -106,8 +116,10 @@ const DrawerOrder = observer((props: Props) => {
               color=" white"
               _hover={{ bg: "#af1212", color: " white" }}
               onClick={() => {
+                onClose();
                 store.addOrder(result);
-                console.log("SUCCESS", store.order);
+                clearAmount();
+                toast();
               }}
             >
               ดำเนินการสั่งอาหาร

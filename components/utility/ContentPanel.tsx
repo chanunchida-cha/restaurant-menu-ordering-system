@@ -14,7 +14,6 @@ import { category } from "@/models/const/category";
 
 type Props = {
   food: OrderFoods | undefined;
-
   orders: Order[];
   type: string;
   addToCart: (clickedItem: Order) => void;
