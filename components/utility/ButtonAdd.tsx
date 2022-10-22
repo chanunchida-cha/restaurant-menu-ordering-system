@@ -13,29 +13,28 @@ import { observer } from "mobx-react-lite";
 type Props = {
   index: number;
   data: InfoFoods;
-  // value: number;
-  list?: boolean;
-  order: Order;
   orders: Order[];
-  // setValue: (value: number) => void;
   addToCart: (clickedItem: Order) => void;
   removeFromCart: (id: number) => void;
 };
 
 const ButtonAdd = observer(
-  ({ index, data, addToCart, removeFromCart, list, order, orders }: Props) => {
-    const eqZero = order?.amount === 0;
-    const gtTen = order?.amount === 10;
-    useEffect(() => {}, [order]);
+  ({ index, data, addToCart, removeFromCart, orders }: Props) => {
+    const findIndex = orders.find((item) => {
+      return parseInt(item.id) === index;
+    });
 
-    // console.log("buttonAdd Order", order);
+    const eqZero = findIndex?.amount === 0;
+    const gtTen = findIndex?.amount === 10;
+
+    // console.log("findIndex", findIndex);
 
     return (
       <HStack maxW="320px" mx="auto" key={data.id}>
         <Button
           width={{ base: "10px" }}
           onClick={() => {
-            removeFromCart(Number(order?.id));
+            removeFromCart(Number(findIndex?.id));
           }}
           disabled={eqZero ? true : false}
           pointerEvents={eqZero ? "none" : undefined}
@@ -64,7 +63,7 @@ const ButtonAdd = observer(
           disabled={gtTen ? true : false}
           pointerEvents={gtTen ? "none" : undefined}
           onClick={() => {
-            addToCart({ ...order });
+            addToCart(findIndex!);
           }}
         >
           +

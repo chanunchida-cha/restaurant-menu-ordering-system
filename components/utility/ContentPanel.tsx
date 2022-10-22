@@ -14,14 +14,20 @@ import { category } from "@/models/const/category";
 
 type Props = {
   food: OrderFoods | undefined;
-  order: Order[];
-  orders:Order[]
+
+  orders: Order[];
   type: string;
   addToCart: (clickedItem: Order) => void;
   removeFromCart: (id: number) => void;
 };
 
-function ContentPanel({ food, order,orders, addToCart, removeFromCart, type }: Props) {
+function ContentPanel({
+  food,
+  orders,
+  addToCart,
+  removeFromCart,
+  type,
+}: Props) {
   // ------------ Device conditon--------------------
   const [isMaxWidth767, isMinToMAX, isDisplay] = useMediaQuery([
     "(max-width: 767px)",
@@ -32,7 +38,6 @@ function ContentPanel({ food, order,orders, addToCart, removeFromCart, type }: P
     <>
       {type === "all" ? (
         <>
-          {" "}
           {category?.map((cat) => {
             return (
               <>
@@ -103,7 +108,6 @@ function ContentPanel({ food, order,orders, addToCart, removeFromCart, type }: P
                                     >
                                       <ButtonAdd
                                         index={parseInt(data.id)}
-                                        order={order?.[Number(index)]}
                                         orders={orders}
                                         data={data}
                                         addToCart={addToCart}
@@ -121,7 +125,6 @@ function ContentPanel({ food, order,orders, addToCart, removeFromCart, type }: P
                                   >
                                     <ButtonAdd
                                       index={parseInt(data.id)}
-                                      order={order?.[Number(index)]}
                                       orders={orders}
                                       data={data}
                                       addToCart={addToCart}
@@ -139,7 +142,6 @@ function ContentPanel({ food, order,orders, addToCart, removeFromCart, type }: P
                                 >
                                   <ButtonAdd
                                     index={parseInt(data.id)}
-                                    order={order?.[Number(index)]}
                                     orders={orders}
                                     data={data}
                                     addToCart={addToCart}
@@ -235,7 +237,6 @@ function ContentPanel({ food, order,orders, addToCart, removeFromCart, type }: P
                                       >
                                         <ButtonAdd
                                           index={parseInt(data.id)}
-                                          order={order?.[Number(index)]}
                                           orders={orders}
                                           data={data}
                                           addToCart={addToCart}
@@ -253,7 +254,6 @@ function ContentPanel({ food, order,orders, addToCart, removeFromCart, type }: P
                                     >
                                       <ButtonAdd
                                         index={parseInt(data.id)}
-                                        order={order?.[Number(index)]}
                                         orders={orders}
                                         data={data}
                                         addToCart={addToCart}
@@ -271,8 +271,6 @@ function ContentPanel({ food, order,orders, addToCart, removeFromCart, type }: P
                                   >
                                     <ButtonAdd
                                       index={parseInt(data.id)}
-                                      order={order?.[Number(index)]}
-                                  
                                       orders={orders}
                                       data={data}
                                       addToCart={addToCart}

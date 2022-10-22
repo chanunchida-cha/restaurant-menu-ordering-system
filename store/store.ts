@@ -1,18 +1,20 @@
 import { makeAutoObservable } from "mobx";
 import axios from "axios";
 import { Order } from "@/models/interfaces/TypesFood";
+import { OrderedList } from "@chakra-ui/react";
 
 class Store {
-    test:number = 1
-    order:Order[] = [] 
     
+    order:Order[][] = [] 
+  
+
     constructor() {
         makeAutoObservable(this);
       }
 
-      addOrder(data:Order){
+      addOrder(data:Order[]){
         this.order.push(data)
-        // console.log(this.order);
+        console.log(this.order);
         
       }
 
