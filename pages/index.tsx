@@ -51,8 +51,9 @@ const Page: NextPageWithLayout = () => {
             <Spinner size="xl" color="red.500" />
           </div>
         </div>
-      ) : null}
-      <Home />
+      ) : (
+        <Home />
+      )}
     </>
   );
 };
