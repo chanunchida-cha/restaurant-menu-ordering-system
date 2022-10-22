@@ -14,7 +14,7 @@ class Store {
 
       addOrder(data:Order[]){
         this.order.push(data)
-        console.log(this.order);
+        
         
       }
 
