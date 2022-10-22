@@ -1,77 +1,73 @@
 import { InfoFoods, Order } from "@/models/interfaces/TypesFood";
-import {
-  Button,
-  HStack,
-  Input,
-  useControllableState,
-  useNumberInput,
-} from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import { store } from "store/store";
+import { Box, Button, HStack } from "@chakra-ui/react";
+import React from "react";
+
 import { observer } from "mobx-react-lite";
 type Props = {
   index: number;
   data: InfoFoods;
-  value:number;
-  setValue:(value:number)=>void
+  orders: Order[];
   addToCart: (clickedItem: Order) => void;
   removeFromCart: (id: number) => void;
- 
 };
 
-const ButtonAdd = observer((props: Props) => {
-  const { index, data, addToCart, removeFromCart,value,setValue} = props;
-
-
-  const [internalValue, setInternalValue] = useControllableState({
-    value,
-    onChange: setValue,
+const ButtonAdd = ({
+  index,
+  data,
+  addToCart,
+  removeFromCart,
+  orders,
+}: Props) => {
+  const findIndex = orders.find((item) => {
+    return parseInt(item.id) === index;
   });
 
-  const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
-    useNumberInput({
-      step: 1,
-      defaultValue: 0,
-      min: -1,
-      max: 10,
-    });
+  const eqZero = findIndex?.amount === 0;
+  const gtTen = findIndex?.amount === 10;
 
-  const inc = getIncrementButtonProps();
-  const dec = getDecrementButtonProps();
-  const input = getInputProps();
+  // console.log("findIndex", findIndex);
 
   return (
-    <HStack maxW="320px" mx="auto" key={index}>
+    <HStack maxW="320px" mx="auto" key={data.id}>
       <Button
-        {...dec}
         width={{ base: "10px" }}
         onClick={() => {
-          setInternalValue(value - 1);
-          removeFromCart(parseInt(data.id));
+          removeFromCart(Number(findIndex?.id));
         }}
-        disabled={internalValue === 0 ? true : false}
-        pointerEvents={internalValue === 0 ? "none" : undefined}
+        disabled={eqZero ? true : false}
+        pointerEvents={eqZero ? "none" : undefined}
       >
         -
       </Button>
-      <Input
-        {...input}
-        textAlign="center"
+      <Box
+        textAlign={"center"}
         width={{ base: "50px", sm: "50px", md: "50px", xl: "80px" }}
-      />
+      >
+        <span>
+          {orders
+            .filter((item) => {
+              return parseInt(item.id) === index;
+            })
+            .map((item) => {
+              return <>{item.amount}</>;
+            })}
+        </span>
+      </Box>
+
       <Button
-        {...inc}
         id={`${data.i18n}`}
         name={`${data.i18n}`}
         width={{ base: "10px" }}
+        disabled={gtTen ? true : false}
+        pointerEvents={gtTen ? "none" : undefined}
         onClick={() => {
-          setInternalValue(value + 1);
-          addToCart({ ...data, amount: internalValue });
+          addToCart(findIndex!);
         }}
       >
         +
       </Button>
     </HStack>
   );
-});
+};
+
 export default ButtonAdd;

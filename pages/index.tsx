@@ -7,23 +7,34 @@ import { ReactElement, useEffect, useState } from "react";
 import type { NextPageWithLayout } from "./_app";
 
 const Page: NextPageWithLayout = () => {
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const [isMaxWidth767, isMinToMAX, isDisplay] = useMediaQuery([
     "(max-width: 767px)",
     "(min-width: 767px) and (max-width: 1279px)",
     "(min-width: 1279px)",
   ]);
+
+  function loadingCondition() {
+    if (isMaxWidth767 || isMinToMAX) {
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+      }, 6000);
+    } else {
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+      }, 250);
+    }
+  }
   useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+    loadingCondition();
   }, []);
 
   return (
     <>
       {loading && (isMaxWidth767 || isMinToMAX) ? (
-        <div className="w-screen h-screen grid grid-cols-3  grid-rows-5 z-50 bg-[#D52D2C] top-0 left-0 bottom-0 right-0 fixed sticky-0 overflow-y-hidden">
+        <div className="w-screen h-screen  grid grid-cols-3  grid-rows-5 z-50 bg-[#D52D2C] top-0 left-0 bottom-0 right-0 fixed sticky-0 overflow-y-hidden">
           <div className="col-start-2 row-start-3  block mx-auto ">
             <Image
               src={"/images/logo.webp"}
@@ -40,9 +51,8 @@ const Page: NextPageWithLayout = () => {
             <Spinner size="xl" color="red.500" />
           </div>
         </div>
-      ) : (
-        <Home />
-      )}
+      ) : null}
+      <Home />
     </>
   );
 };

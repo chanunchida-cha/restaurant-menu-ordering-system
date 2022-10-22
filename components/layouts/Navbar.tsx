@@ -3,6 +3,7 @@ import { Box, Image, Text } from "@chakra-ui/react";
 import DrawerOrder from "../utility/DrawerOrder";
 import { observer } from "mobx-react-lite";
 import { store } from "store/store";
+import History from "../utility/History";
 
 interface Props {}
 
@@ -14,29 +15,9 @@ const Navbar = observer(({}: Props): ReactElement => {
           <Image src="images/logo-red.png" boxSize="100px" alt="logo" />
         </Box>
       </div>
-      <div>
-        <Box width={{ base: "100%", sm: "100%", md: "50%" }}>
-          <Text
-            bg="#D52D2C"
-            py={{ base: 2, sm: 1, md: 2 }}
-            borderRadius={5}
-            color={"white"}
-            paddingLeft={{ base: 5, sm: 4, md: 5 }}
-          >
-            โต๊ะที่ 1
-          </Text>{" "}
-          <br />
-          <Text
-            py={{ base: 2, sm: 1, md: 2 }}
-            borderRadius={5}
-            paddingLeft={{ base: 5, sm: 4, md: 5 }}
-          >
-            Hai Thi Ter Shabu
-          </Text>
-        </Box>
-      </div>
-      <div>
-        
+      <div></div>
+      <div >
+        <History />
       </div>
     </div>
   );
