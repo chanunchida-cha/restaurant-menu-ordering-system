@@ -86,7 +86,7 @@ function ContentPanel({
                                     px="2"
                                     colorScheme="teal"
                                   >
-                                    เนื้อหมู
+                                    {cat.i18n}
                                   </Badge>
                                 </Box>
 
@@ -215,7 +215,7 @@ function ContentPanel({
                                       px="2"
                                       colorScheme="teal"
                                     >
-                                      เนื้อหมู
+                                      {cat.i18n}
                                     </Badge>
                                   </Box>
 
