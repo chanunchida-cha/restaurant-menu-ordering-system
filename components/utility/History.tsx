@@ -25,7 +25,7 @@ const History = observer(() => {
             ref={btnRef}
             bg="#D52D2C"
             color=" white"
-            size={{ base: "xs", sm: "sm", md: "md" }}
+            size={{ base: "sm", sm: "sm", md: "md" }}
             _hover={{ bg: "#af1212", color: " white" }}
             onClick={onOpen}
           >
