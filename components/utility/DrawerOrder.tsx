@@ -15,18 +15,27 @@ import {
 import { observer } from "mobx-react-lite";
 import { store } from "store/store";
 import { Order } from "@/models/interfaces/TypesFood";
+import { ShoppingCartIcon } from "@heroicons/react/24/solid";
 import ButtonAdd from "./ButtonAdd";
 
 type Props = {
   totalOrder: number;
   orders: Order[];
+  isDisplay?: boolean;
   clearAmount: () => void;
   addToCart: (clickedItem: Order) => void;
   removeFromCart: (id: number) => void;
 };
 
 const DrawerOrder = observer((props: Props) => {
-  const { orders, totalOrder, addToCart, removeFromCart, clearAmount } = props;
+  const {
+    orders,
+    totalOrder,
+    addToCart,
+    removeFromCart,
+    clearAmount,
+    isDisplay,
+  } = props;
   const toast = useToast({
     title: "สั่งรายการอาหารเรียบร้อยแล้ว",
     description: "ลูกค้าจะได้รับอาหารไม่เกิน 5 นาที",
@@ -45,13 +54,26 @@ const DrawerOrder = observer((props: Props) => {
     <div className="mt-5">
       <Button
         ref={btnRef}
+        rounded={isDisplay ? "3xl" : "5px"}
         onClick={onOpen}
-        px={{ base: "130px", sm: "40px" }}
+        px={
+          isDisplay
+            ? { base: "10px", md: "20px" }
+            : { base: "130px", sm: "40px" }
+        }
         bg="#D52D2C"
         color=" white"
         _hover={{ bg: "#af1212", color: " white" }}
       >
-        {`รายการอาหาร ${totalOrder}`}
+        {isDisplay ? (
+          <>
+            {" "}
+            <ShoppingCartIcon className="h-6 w-6 text-white" />
+            {totalOrder}
+          </>
+        ) : (
+          `รายการอาหาร ${totalOrder}`
+        )}
       </Button>
 
       <Drawer
@@ -73,7 +95,7 @@ const DrawerOrder = observer((props: Props) => {
               })
               .map((order, index: number) => {
                 return (
-                  <div className="grid grid-cols-5 border-b-2" key={index}>
+                  <div className="grid grid-cols-5 border-b" key={index}>
                     <div>
                       <Image
                         display={{ xl: "block" }}
