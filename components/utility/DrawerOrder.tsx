@@ -136,6 +136,7 @@ const DrawerOrder = observer((props: Props) => {
             <Button
               bg="#D52D2C"
               color=" white"
+              width={"full"}
               _hover={{ bg: "#af1212", color: " white" }}
               onClick={() => {
                 onClose();
