@@ -32,6 +32,7 @@ const ButtonAdd = ({
       <Button
         size={{
           base: "md",
+          xxs: "sm",
           xs: "md",
           sm: "md",
           md: "lg",
@@ -56,9 +57,17 @@ const ButtonAdd = ({
       </Button>
       <Box
         textAlign={"center"}
-        width={{ base: "20px", xs: "8px", sm: "50px", md: "50px", xl: "80px" }}
+        width={{
+          base: "20px",
+          xxs: "8px",
+          xs: "8px",
+          sm: "50px",
+          md: "50px",
+          xl: "80px",
+        }}
         fontSize={{
           base: "sm",
+          xxs: "sm",
           xs: "sm",
           sm: "sm",
           md: "md",
@@ -82,6 +91,7 @@ const ButtonAdd = ({
         name={`${data.i18n}`}
         size={{
           base: "md",
+          xxs: "sm",
           xs: "md",
           sm: "md",
           md: "lg",
