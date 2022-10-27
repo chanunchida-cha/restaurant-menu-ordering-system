@@ -137,7 +137,7 @@ function Home() {
           </div>
         </div>
       )}
-      <Tabs isFitted={isDisplay ? true : false}>
+      <Tabs >
         <SimpleGrid columns={1} spacing={2}>
           <TabList
             overflowX={{
@@ -153,7 +153,7 @@ function Home() {
               sm: "inline-",
               md: "inline-",
               lg: "inline-",
-              xl: "flex",
+              xl: "inline-flex",
             }}
             width={"100%"}
           >

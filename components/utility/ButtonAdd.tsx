@@ -41,7 +41,7 @@ const ButtonAdd = ({
       </Button>
       <Box
         textAlign={"center"}
-        width={{ base: "50px", sm: "50px", md: "50px", xl: "80px" }}
+        width={{ base: "20px", sm: "50px", md: "50px", xl: "80px" }}
       >
         <span>
           {orders
