@@ -93,7 +93,7 @@ function ContentPanel({
                                     }}
                                   />
                                 </div>
-                                <div className=" col-start-2 col-span-2  sm:col-start-2 sm:col-span-2  md:col-start-2 md:col-span-2  lg:col-start-3 lg:col-span-1  xl:col-start-1">
+                                <div className=" pt-3 col-start-2 col-span-2  sm:col-start-2 sm:col-span-2  md:col-start-2 md:col-span-2  lg:col-start-3 lg:col-span-1  xl:col-start-1">
                               <div className="lg:grid lg:grid-rows-3 xl:row-1">
                                 <div className="lg:row-start-2">  
                                 <Box display="flex" alignItems="baseline">
@@ -139,7 +139,7 @@ function ContentPanel({
                                     {data.i18n}
                                   </Box>
                                 </div>
-                                <div className="col-start-4 sm:col-start-4 md:col-start-4 md:col-span-2  lg:col-start-5  xl:col-start-2 xl:col-span-3 xl:pt-3">
+                                <div className=" pt-3 col-start-4 col-span-2 flex justify-end sm:col-start-4 md:col-start-4 md:col-span-2  lg:col-start-5  xl:col-start-2 xl:col-span-3 xl:pt-3">
                                   <div className=" lg:grid lg:grid-rows-3 xl:grid-rows-1">
                                     <div className="  lg:row-start-2">
                                       {" "}
@@ -271,7 +271,7 @@ function ContentPanel({
                                       {data.i18n}
                                     </Box>
                                   </div>
-                                  <div className="col-start-4 sm:col-start-4 md:col-start-4 md:col-span-2  lg:col-start-5  xl:col-start-2 xl:col-span-3 xl:pt-3">
+                                  <div className="pt-3 col-start-4 col-span-2 flex justify-end sm:col-start-4 md:col-start-4 md:col-span-2  lg:col-start-5  xl:col-start-2 xl:col-span-3 xl:pt-3">
                                     <div className=" lg:grid lg:grid-rows-3 xl:grid-rows-1">
                                       <div className="  lg:row-start-2">
                                         {" "}
