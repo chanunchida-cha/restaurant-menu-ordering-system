@@ -28,26 +28,42 @@ const ButtonAdd = ({
   // console.log("findIndex", findIndex);
 
   return (
-    <HStack maxW="320px"  key={data.id}>
+    <HStack maxW="320px" key={data.id}>
       <Button
-        width={{ base: "10px" }}
+     
+        size={{
+          base: "sm",
+          xs: "sm",
+          sm: "sm",
+          md: "lg",
+          lg: "lg",
+          xl: "lg",
+        }}
         onClick={() => {
           removeFromCart(Number(findIndex?.id));
         }}
         disabled={eqZero ? true : false}
         pointerEvents={eqZero ? "none" : undefined}
+        fontSize={{
+          base: "sm",
+          xs: "xs",
+          sm: "sm",
+          md: "md",
+          lg: "md",
+          xl: "md",
+        }}
       >
         -
       </Button>
       <Box
         textAlign={"center"}
-        width={{ base: "20px",xs:"10px", sm: "50px", md: "50px", xl: "80px" }}
+        width={{ base: "20px", xs: "8px", sm: "50px", md: "50px", xl: "80px" }}
         fontSize={{
           base: "sm",
-          xs:"sm",
+          xs: "xs",
           sm: "sm",
           md: "md",
-          lg:"md",
+          lg: "md",
           xl: "md",
         }}
       >
@@ -65,11 +81,26 @@ const ButtonAdd = ({
       <Button
         id={`${data.i18n}`}
         name={`${data.i18n}`}
-        width={{ base: "10px" }}
+        size={{
+          base: "sm",
+          xs: "sm",
+          sm: "sm",
+          md: "lg",
+          lg: "lg",
+          xl: "lg",
+        }}
         disabled={gtTen ? true : false}
         pointerEvents={gtTen ? "none" : undefined}
         onClick={() => {
           addToCart(findIndex!);
+        }}
+        fontSize={{
+          base: "sm",
+          xs: "xs",
+          sm: "sm",
+          md: "md",
+          lg: "md",
+          xl: "md",
         }}
       >
         +
