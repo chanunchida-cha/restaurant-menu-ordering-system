@@ -20,6 +20,7 @@ import { category } from "@/models/const/category";
 const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
 function Home() {
+  const [searchText, setSearchText] = useState("");
   const [orders, setOrders] = useState([] as Order[]);
   const [isMaxWidth767, isMinToMAX, isDisplay] = useMediaQuery([
     "(max-width: 767px)",
@@ -86,7 +87,14 @@ function Home() {
 
   return (
     <div className=" z-20">
-      <Input placeholder="ค้นหา" focusBorderColor="#EC9191" />
+      <Input
+        placeholder="ค้นหา"
+        focusBorderColor="#EC9191"
+        value={searchText}
+        onChange={(e) => {
+          setSearchText(e.target.value);
+        }}
+      />
       {isMaxWidth767 || isMinToMAX ? (
         <div className=" w-screen h-[100px] z-30  grid grid-cols-4  grid-rows-1 fixed bottom-0 sticky-0 left-0 ">
           <div className=" col-span-4 w-screen h-screen flex justify-center rounded-t-lg row-start-4 bg-white  drop-shadow-2xl  mx-auto ">
@@ -125,7 +133,7 @@ function Home() {
           </div>
         </div>
       )}
-      <Tabs>
+      <Tabs isFitted={isDisplay ? true : false}>
         <SimpleGrid columns={1} spacing={2}>
           <TabList
             overflowX={{
@@ -136,15 +144,40 @@ function Home() {
             }}
             my="20px"
             overflowY="hidden"
-            display={"inline-"}
-            justifyContent="center"
+            display={{
+              base: "inline-",
+              sm: "inline-",
+              md: "inline-",
+              lg: "inline-",
+              xl: "flex",
+            }}
             width={"100%"}
           >
-            <Tab>ทั้งหมด</Tab>
+            <Tab>
+              <Text
+                fontSize={{
+                  base: "md",
+                  sm: "md",
+                  md: "md",
+                  lg: "md",
+                  xl: "lg",
+                }}
+              >
+                ทั้งหมด
+              </Text>
+            </Tab>
             {category.map((cat, index: number) => {
               return (
                 <Tab key={index}>
-                  <Text fontSize={{ base: "md", sm: "md", md: "md", lg: "lg" }}>
+                  <Text
+                    fontSize={{
+                      base: "md",
+                      sm: "md",
+                      md: "md",
+                      lg: "md",
+                      xl: "lg",
+                    }}
+                  >
                     {cat.i18n}
                   </Text>
                 </Tab>
@@ -161,6 +194,7 @@ function Home() {
               addToCart={addToCart}
               removeFromCart={removeFromCart}
               type={"all"}
+              searchText = {searchText}
             />
           </TabPanel>
           {category.map((cat, index: number) => {
@@ -172,6 +206,8 @@ function Home() {
                   addToCart={addToCart}
                   removeFromCart={removeFromCart}
                   type={cat.key}
+                  searchText = {searchText}
+                  
                 />
               </TabPanel>
             );

@@ -16,6 +16,7 @@ type Props = {
   food: OrderFoods | undefined;
   orders: Order[];
   type: string;
+  searchText:string
   addToCart: (clickedItem: Order) => void;
   removeFromCart: (id: number) => void;
 };
@@ -26,6 +27,7 @@ function ContentPanel({
   addToCart,
   removeFromCart,
   type,
+  searchText
 }: Props) {
   // ------------ Device conditon--------------------
   const [isMaxWidth767, isMinToMAX, isDisplay] = useMediaQuery([
@@ -40,14 +42,15 @@ function ContentPanel({
           {category?.map((cat) => {
             return (
               <>
-                <Text fontSize={20} my={5}>
+              {searchText === "" &&  <Text fontSize={20} my={5}>
                   {cat.i18n}
-                </Text>
+                </Text>}
                 <SimpleGrid
                   columns={{ base: 1, sm: 1, md: 1, xl: 3 }}
                   spacing={5}
+                  my={5}
                 >
-                  {food?.[cat.key]?.map((data: InfoFoods, index: number) => {
+                  {food?.[cat.key]?.filter((data)=> data.i18n.includes(searchText)).map((data: InfoFoods) => {
                     return (
                       <div key={data.id}>
                         <div>
@@ -176,7 +179,7 @@ function ContentPanel({
                     columns={{ base: 1, sm: 1, md: 1, xl: 3 }}
                     spacing={5}
                   >
-                    {food?.[cat.key]?.map((data: InfoFoods, index: number) => {
+                    {food?.[cat.key]?.filter((data)=> data.i18n.includes(searchText)).map((data: InfoFoods, index: number) => {
                       return (
                         <div key={data.id}>
                           <div>

@@ -10,5 +10,5 @@ export interface Order extends InfoFoods {
 }
 
 export interface OrderFoods {
-  [key:string]:InfoFoods[]
+  [key: string]: InfoFoods[];
 }
