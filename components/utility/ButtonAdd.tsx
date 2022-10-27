@@ -30,11 +30,10 @@ const ButtonAdd = ({
   return (
     <HStack maxW="320px" key={data.id}>
       <Button
-     
         size={{
-          base: "sm",
-          xs: "sm",
-          sm: "sm",
+          base: "md",
+          xs: "md",
+          sm: "md",
           md: "lg",
           lg: "lg",
           xl: "lg",
@@ -46,7 +45,7 @@ const ButtonAdd = ({
         pointerEvents={eqZero ? "none" : undefined}
         fontSize={{
           base: "sm",
-          xs: "xs",
+          xs: "sm",
           sm: "sm",
           md: "md",
           lg: "md",
@@ -60,7 +59,7 @@ const ButtonAdd = ({
         width={{ base: "20px", xs: "8px", sm: "50px", md: "50px", xl: "80px" }}
         fontSize={{
           base: "sm",
-          xs: "xs",
+          xs: "sm",
           sm: "sm",
           md: "md",
           lg: "md",
@@ -82,9 +81,9 @@ const ButtonAdd = ({
         id={`${data.i18n}`}
         name={`${data.i18n}`}
         size={{
-          base: "sm",
-          xs: "sm",
-          sm: "sm",
+          base: "md",
+          xs: "md",
+          sm: "md",
           md: "lg",
           lg: "lg",
           xl: "lg",
