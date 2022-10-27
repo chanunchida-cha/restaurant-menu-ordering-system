@@ -4,6 +4,8 @@ import {
   Box,
   Image,
   Input,
+  InputGroup,
+  InputLeftElement,
   SimpleGrid,
   Text,
   useMediaQuery,
@@ -79,6 +81,7 @@ function Home() {
     if (!food) return;
     genAmount();
   }, [food]);
+
   if (error) return <div>failed to load</div>;
 
   // ----------------------------------------
@@ -87,14 +90,36 @@ function Home() {
 
   return (
     <div className=" z-20">
-      <Input
-        placeholder="ค้นหา"
-        focusBorderColor="#EC9191"
-        value={searchText}
-        onChange={(e) => {
-          setSearchText(e.target.value);
-        }}
-      />
+      <InputGroup>
+        <InputLeftElement
+          pointerEvents="none"
+          children={
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+              />
+            </svg>
+          }
+        />
+        <Input
+          placeholder="ค้นหาเมนูอาหาร"
+          focusBorderColor="#EC9191"
+          value={searchText}
+          onChange={(e) => {
+            setSearchText(e.target.value);
+          }}
+        />
+      </InputGroup>
+
       {isMaxWidth767 || isMinToMAX ? (
         <div className=" w-screen h-[100px] z-30  grid grid-cols-4  grid-rows-1 fixed bottom-0 sticky-0 left-0 ">
           <div className=" col-span-4 w-screen h-screen flex justify-center rounded-t-lg row-start-4 bg-white  drop-shadow-2xl  mx-auto ">
@@ -194,7 +219,7 @@ function Home() {
               addToCart={addToCart}
               removeFromCart={removeFromCart}
               type={"all"}
-              searchText = {searchText}
+              searchText={searchText}
             />
           </TabPanel>
           {category.map((cat, index: number) => {
@@ -206,8 +231,7 @@ function Home() {
                   addToCart={addToCart}
                   removeFromCart={removeFromCart}
                   type={cat.key}
-                  searchText = {searchText}
-                  
+                  searchText={searchText}
                 />
               </TabPanel>
             );
