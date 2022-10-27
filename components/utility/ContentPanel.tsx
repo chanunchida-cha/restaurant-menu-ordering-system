@@ -73,7 +73,8 @@ function ContentPanel({
                                 xl: "block",
                               }}
                               alignItems="center"
-                              p={5}
+                              py={5}
+                              px={3}
                             >
                               <div className="grid grid-cols-5  sm:grid-cols-5 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-5 ">
                                 <div className="col-start-1 sm:col-start-1 md:col-start-1 lg:col-start-1 lg:col-span-2  xl:col-start-2 xl:col-span-3">
@@ -113,7 +114,7 @@ function ContentPanel({
                                       noOfLines={1}
                                       fontSize={{
                                         base: "sm",
-                                        xs:"sm",
+                                        xs:"xs",
                                         sm: "sm",
                                         md: "md",
                                         lg:"md",
@@ -204,7 +205,8 @@ function ContentPanel({
                                   xl: "block",
                                 }}
                                 alignItems="center"
-                                p={5}
+                                py={5}
+                                px={3}
                               >
                                 <div className="grid grid-cols-5  sm:grid-cols-5 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-5 ">
                                   <div className="col-start-1 sm:col-start-1 md:col-start-1 lg:col-start-1 lg:col-span-2  xl:col-start-2 xl:col-span-3">
@@ -244,7 +246,7 @@ function ContentPanel({
                                         noOfLines={1}
                                         fontSize={{
                                           base: "sm",
-                                          xs:"sm",
+                                          xs:"xs",
                                           sm: "sm",
                                           md: "md",
                                           lg:"md",

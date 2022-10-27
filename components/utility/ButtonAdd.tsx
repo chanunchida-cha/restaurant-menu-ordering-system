@@ -28,7 +28,7 @@ const ButtonAdd = ({
   // console.log("findIndex", findIndex);
 
   return (
-    <HStack maxW="320px" mx="auto" key={data.id}>
+    <HStack maxW="320px"  key={data.id}>
       <Button
         width={{ base: "10px" }}
         onClick={() => {
@@ -41,7 +41,15 @@ const ButtonAdd = ({
       </Button>
       <Box
         textAlign={"center"}
-        width={{ base: "20px", sm: "50px", md: "50px", xl: "80px" }}
+        width={{ base: "20px",xs:"10px", sm: "50px", md: "50px", xl: "80px" }}
+        fontSize={{
+          base: "sm",
+          xs:"sm",
+          sm: "sm",
+          md: "md",
+          lg:"md",
+          xl: "md",
+        }}
       >
         <span>
           {orders
