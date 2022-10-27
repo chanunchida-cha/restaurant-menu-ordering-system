@@ -109,7 +109,7 @@ function Home() {
               />
             </svg>
           }
-        />
+        ></InputLeftElement>
         <Input
           placeholder="ค้นหาเมนูอาหาร"
           focusBorderColor="#EC9191"
