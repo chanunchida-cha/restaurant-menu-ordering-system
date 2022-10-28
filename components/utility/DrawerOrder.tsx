@@ -69,7 +69,7 @@ const DrawerOrder = observer((props: Props) => {
           <>
             {" "}
             <ShoppingCartIcon className="h-6 w-6 text-white" />
-            {totalOrder}
+            {totalOrder > 0 && totalOrder}
           </>
         ) : (
           `รายการอาหาร ${totalOrder}`
@@ -88,49 +88,55 @@ const DrawerOrder = observer((props: Props) => {
           <DrawerCloseButton />
           <DrawerHeader my={10}>รายการอาหาร</DrawerHeader>
 
-          <DrawerBody>
-            {orders
-              .filter((item) => {
-                return item.amount > 0;
-              })
-              .map((order, index: number) => {
-                return (
-                  <div className="grid grid-cols-5 border-b" key={index}>
-                    <div>
-                      <Image
-                        display={{ xl: "block" }}
-                        mx={{ base: "auto", sm: 2, xl: "auto" }}
-                        src={`/images/${order.src}`}
-                        alt={order.i18n}
-                        textAlign="center"
-                        width={{
-                          base: "80%",
-                          sm: "60%",
-                          md: "50%",
-                          xl: "100%",
-                        }}
-                      />
-                    </div>
-                    <div className="col-span-2 grid grid-rows-3">
-                      <span className="row-start-2 inline-block align-middle">
-                        {order.i18n}
-                      </span>
-                    </div>
-                    <div className="col-span-2 grid grid-rows-3">
-                      <div className="row-start-2">
-                        <ButtonAdd
-                          index={parseInt(order.id)}
-                          data={order}
-                          orders={orders}
-                          addToCart={addToCart}
-                          removeFromCart={removeFromCart}
+          {totalOrder === 0 ? (
+            <DrawerBody>
+              <div>ไม่มีรายการอาหารในตะกร้า</div>
+            </DrawerBody>
+          ) : (
+            <DrawerBody>
+              {orders
+                .filter((item) => {
+                  return item.amount > 0;
+                })
+                .map((order, index: number) => {
+                  return (
+                    <div className="grid grid-cols-5 border-b" key={index}>
+                      <div>
+                        <Image
+                          display={{ xl: "block" }}
+                          mx={{ base: "auto", sm: 2, xl: "auto" }}
+                          src={`/images/${order.src}`}
+                          alt={order.i18n}
+                          textAlign="center"
+                          width={{
+                            base: "80%",
+                            sm: "60%",
+                            md: "50%",
+                            xl: "100%",
+                          }}
                         />
                       </div>
+                      <div className="col-span-2 grid grid-rows-3">
+                        <span className="row-start-2 inline-block align-middle">
+                          {order.i18n}
+                        </span>
+                      </div>
+                      <div className="col-span-2 grid grid-rows-3">
+                        <div className="row-start-2">
+                          <ButtonAdd
+                            index={parseInt(order.id)}
+                            data={order}
+                            orders={orders}
+                            addToCart={addToCart}
+                            removeFromCart={removeFromCart}
+                          />
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
-          </DrawerBody>
+                  );
+                })}
+            </DrawerBody>
+          )}
 
           <DrawerFooter>
             <Button
@@ -138,12 +144,15 @@ const DrawerOrder = observer((props: Props) => {
               color=" white"
               width={"full"}
               _hover={{ bg: "#af1212", color: " white" }}
+              _disabled={{bg: "#60606091"}}
               onClick={() => {
                 onClose();
                 store.addOrder(result);
                 clearAmount();
                 toast();
               }}
+              disabled={totalOrder === 0 ? true : false}
+              pointerEvents={totalOrder === 0 ? "none" : undefined}
             >
               ดำเนินการสั่งอาหาร
             </Button>

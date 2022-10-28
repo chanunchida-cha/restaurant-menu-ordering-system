@@ -6,6 +6,7 @@ import { OrderedList } from "@chakra-ui/react";
 class Store {
     
     order:Order[][] = [] 
+    historyShow:Order[][] = []
   
 
     constructor() {
@@ -14,7 +15,7 @@ class Store {
 
       addOrder(data:Order[]){
         this.order.push(data)
-        
+        this.historyShow = this.order.reverse()
         
       }
 

@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
-  Badge,
-  Box,
-  Image,
   Input,
-  InputGroup,
-  InputLeftElement,
   SimpleGrid,
   Text,
   useMediaQuery,
@@ -13,8 +8,8 @@ import {
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import axios from "axios";
 import useSWR from "swr";
-import { InfoFoods, Order, OrderFoods } from "@/models/interfaces/TypesFood";
-import ButtonAdd from "../utility/ButtonAdd";
+import { Order, OrderFoods } from "@/models/interfaces/TypesFood";
+
 import DrawerOrder from "../utility/DrawerOrder";
 import ContentPanel from "../utility/ContentPanel";
 import { category } from "@/models/const/category";
