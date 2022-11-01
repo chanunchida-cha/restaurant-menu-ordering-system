@@ -36,7 +36,7 @@ function ContentPanel({
     "(min-width: 1279px)",
   ]);
   return (
-    <>
+    <div className="mb-32">
       {type === "all" ? (
         <>
           {category?.map((cat) => {
@@ -321,7 +321,7 @@ function ContentPanel({
             })}
         </>
       )}
-    </>
+    </div>
   );
 }
 
