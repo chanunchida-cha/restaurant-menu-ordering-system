@@ -80,7 +80,7 @@ function Home() {
 
   return (
     <div className=" z-10 mt-24">
-      <div className="fixed w-screen left-0 right-0 z-20">
+      <div className="fixed w-screen left-0 right-0 z-20 bg-white">
         <div className="mx-3 sm:mx-3 md:mx-12 lg:mx-12 xl:mx-36">
           <Input
             placeholder="ค้นหาเมนูอาหาร"
