@@ -51,7 +51,7 @@ const DrawerOrder = observer((props: Props) => {
   });
 
   return (
-    <div className="mt-5 ">
+    <div className="mt-5 px-10">
       <Button
         ref={btnRef}
         rounded={isDisplay ? "5px" : "5px"}
@@ -59,7 +59,7 @@ const DrawerOrder = observer((props: Props) => {
         px={
           isDisplay
             ? { base: "10px", md: "30px" }
-            : { base: "120px", sm: "40px" }
+            : { base: "120px",xxxs:"70px",xxs:"100px", sm: "150px",lg:"200px" }
         }
         bg="#D52D2C"
         color=" white"
@@ -72,7 +72,7 @@ const DrawerOrder = observer((props: Props) => {
             {totalOrder > 0 && totalOrder}
           </>
         ) : (
-          `รายการอาหาร ${totalOrder}`
+         `รายการอาหาร   ${totalOrder}`
         )}
       </Button>
 
@@ -144,7 +144,7 @@ const DrawerOrder = observer((props: Props) => {
               color=" white"
               width={"full"}
               _hover={{ bg: "#af1212", color: " white" }}
-              _disabled={{bg: "#60606091"}}
+              _disabled={{ bg: "#60606091" }}
               onClick={() => {
                 onClose();
                 store.addOrder(result);

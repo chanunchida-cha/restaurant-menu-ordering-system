@@ -6,6 +6,7 @@ import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import Layout from "@/components/layouts/Layout";
 
 const breakpoints = {
+  xxxs:"10em",
   xxs:"20em",
   xs:"24em",
   sm: "30em",
