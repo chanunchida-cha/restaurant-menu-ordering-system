@@ -62,7 +62,7 @@ const History = observer(() => {
                       return (
                         <div
                           key={i}
-                          className={index < 3 ?"mb-5 border-r-8 border-[#6095d2]":"mb-5 border-r-8 border-[#43a595]"}
+                          className={index < 1 ?"mb-5 border-r-8 border-[#6095d2]":"mb-5 border-r-8 border-[#43a595]"}
                         >
                           <div
                             className="grid grid-cols-5 border-b"
@@ -95,7 +95,7 @@ const History = observer(() => {
                             </div>
                             <div className="col-span-1 grid grid-rows-3">
                               <div className="flex justify-end pr-10 row-start-2">
-                                {index < 3 ? (
+                                {index < 1 ? (
                                   <Box display="flex" alignItems="baseline">
                                     <Badge
                                       borderRadius="full"

@@ -84,7 +84,7 @@ function Home() {
   const totalOrder = orders.reduce((prev, cur) => Number(cur.amount) + prev, 0);
 
   return (
-    <div className=" z-20">
+    <div className=" z-20 ">
       <Input
         placeholder="ค้นหาเมนูอาหาร"
         focusBorderColor="#EC9191"
@@ -107,8 +107,8 @@ function Home() {
           </div>
         </div>
       ) : isDisplay ? (
-        <div className=" w-screen h-[100px] z-30  grid grid-cols-4  grid-rows-1 fixed bottom-0 sticky-0 left-0 ">
-          <div className="col-start-4 flex justify-end mr-10">
+        <div className=" w-screen h-[150px] z-30  grid grid-cols-4   grid-rows-1 fixed bottom-0 sticky-0 left-0 ">
+          <div className="col-start-4 flex justify-end mr-20">
             <DrawerOrder
               isDisplay
               clearAmount={genAmount}

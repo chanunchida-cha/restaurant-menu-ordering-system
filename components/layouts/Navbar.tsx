@@ -11,6 +11,7 @@ const Navbar = observer(({}: Props): ReactElement => {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3  mb-4">
       <div className="pl-4">
+   
         <Box height="100px">
           <Image src="images/logo-red.png" boxSize="100px" alt="logo" />
         </Box>

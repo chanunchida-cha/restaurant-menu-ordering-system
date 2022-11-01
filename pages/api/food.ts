@@ -36,7 +36,7 @@ const foods = {
     },
     {
       id: "6",
-      i18n: "หมูนุ่มโรยงาน",
+      i18n: "หมูนุ่มโรยงา",
       src: "6.webp",
       category: "pork",
     },
@@ -320,7 +320,7 @@ const foods = {
     },
     {
       id: "51",
-      i18n: "เฟรนช์ฟราย",
+      i18n: "นักเก็ต",
       src: "51.webp",
       category: "appetizer",
     },
@@ -414,7 +414,7 @@ const foods = {
     },
     {
       id: "66",
-      i18n: "น้ำมะพร้าว",
+      i18n: "น้ำมะพร้าวปั่น",
       src: "66.webp",
       category: "drink",
     },
