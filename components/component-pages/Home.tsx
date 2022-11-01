@@ -126,7 +126,7 @@ function Home() {
         </div>
       ) : isDisplay ? (
         <div className=" w-screen h-[150px] z-30  grid grid-cols-4   grid-rows-1 fixed bottom-0 sticky-0 left-0 ">
-          <div className="col-start-4 flex justify-end mr-20">
+          <div className="col-start-4 flex justify-end mr-7">
             <DrawerOrder
               isDisplay
               clearAmount={genAmount}
