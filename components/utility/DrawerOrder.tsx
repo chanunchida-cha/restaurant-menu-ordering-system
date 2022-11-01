@@ -51,7 +51,7 @@ const DrawerOrder = observer((props: Props) => {
   });
 
   return (
-    <div className="mt-5">
+    <div className="mt-5 ">
       <Button
         ref={btnRef}
         rounded={isDisplay ? "5px" : "5px"}
@@ -59,7 +59,7 @@ const DrawerOrder = observer((props: Props) => {
         px={
           isDisplay
             ? { base: "10px", md: "30px" }
-            : { base: "130px", sm: "40px" }
+            : { base: "120px", sm: "40px" }
         }
         bg="#D52D2C"
         color=" white"

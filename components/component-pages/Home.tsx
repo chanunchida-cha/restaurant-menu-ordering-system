@@ -114,7 +114,7 @@ function Home() {
 
       {isMaxWidth767 || isMinToMAX ? (
         <div className=" w-screen h-[100px] z-30  grid grid-cols-4  grid-rows-1 fixed bottom-0 sticky-0 left-0 ">
-          <div className=" col-span-4 w-screen h-screen flex justify-center rounded-t-lg row-start-4 bg-white  drop-shadow-2xl  mx-auto ">
+          <div className=" col-span-4  w-screen h-screen flex justify-center rounded-t-lg row-start-4 bg-white  drop-shadow-2xl  mx-auto  ">
             <DrawerOrder
               clearAmount={genAmount}
               totalOrder={totalOrder}
