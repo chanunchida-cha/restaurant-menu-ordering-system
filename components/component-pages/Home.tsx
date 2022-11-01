@@ -82,14 +82,33 @@ function Home() {
     <div className=" z-10 mt-24">
       <div className="fixed w-screen left-0 right-0 z-20 bg-white">
         <div className="mx-3 sm:mx-3 md:mx-12 lg:mx-12 xl:mx-36">
-          <Input
-            placeholder="ค้นหาเมนูอาหาร"
-            focusBorderColor="#EC9191"
-            value={searchText}
-            onChange={(e) => {
-              setSearchText(e.target.value);
-            }}
-          />
+          <div className="relative ">
+            <Input
+              placeholder="ค้นหาเมนูอาหาร"
+              focusBorderColor="#EC9191"
+              value={searchText}
+              onChange={(e) => {
+                setSearchText(e.target.value);
+              }}
+            
+            />
+            <div className="flex absolute inset-y-0 right-0 items-center pr-3 pointer-events-none">
+              <svg
+                className="w-5 h-5 text-[#D52D2C] dark:text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -134,7 +153,7 @@ function Home() {
       <Tabs>
         <SimpleGrid columns={1} spacing={2} backgroundColor={"white"}>
           <TabList
-          backgroundColor={"white"}
+            backgroundColor={"white"}
             zIndex={"20"}
             position={"fixed"}
             overflowX={{
@@ -164,7 +183,7 @@ function Home() {
               md: "87%",
               lg: "90%",
               xl: "83%",
-              "2xl":"86%"
+              "2xl": "86%",
             }}
           >
             <Tab>
