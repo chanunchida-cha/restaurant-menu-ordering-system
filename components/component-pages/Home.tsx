@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Input,
-  SimpleGrid,
-  Text,
-  useMediaQuery,
-} from "@chakra-ui/react";
+import { Input, SimpleGrid, Text, useMediaQuery } from "@chakra-ui/react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import axios from "axios";
 import useSWR from "swr";
@@ -84,15 +79,19 @@ function Home() {
   const totalOrder = orders.reduce((prev, cur) => Number(cur.amount) + prev, 0);
 
   return (
-    <div className=" z-20 ">
-      <Input
-        placeholder="ค้นหาเมนูอาหาร"
-        focusBorderColor="#EC9191"
-        value={searchText}
-        onChange={(e) => {
-          setSearchText(e.target.value);
-        }}
-      />
+    <div className=" z-10 mt-24">
+      <div className="fixed w-screen left-0 right-0 z-20">
+        <div className="mx-3 sm:mx-3 md:mx-12 lg:mx-12 xl:mx-36">
+          <Input
+            placeholder="ค้นหาเมนูอาหาร"
+            focusBorderColor="#EC9191"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+        </div>
+      </div>
 
       {isMaxWidth767 || isMinToMAX ? (
         <div className=" w-screen h-[100px] z-30  grid grid-cols-4  grid-rows-1 fixed bottom-0 sticky-0 left-0 ">
@@ -132,16 +131,25 @@ function Home() {
           </div>
         </div>
       )}
-      <Tabs >
-        <SimpleGrid columns={1} spacing={2}>
+      <Tabs>
+        <SimpleGrid columns={1} spacing={2} backgroundColor={"white"}>
           <TabList
+          backgroundColor={"white"}
+            zIndex={"20"}
+            position={"fixed"}
             overflowX={{
               base: "auto",
               sm: "auto",
               md: "auto",
               lg: "hidden",
             }}
-            my="20px"
+            my={{
+              base: "50px",
+              sm: "50px",
+              md: "50px",
+              lg: "50px",
+              xl: "50px",
+            }}
             overflowY="hidden"
             display={{
               base: "inline-",
@@ -150,7 +158,14 @@ function Home() {
               lg: "inline-",
               xl: "inline-flex",
             }}
-            width={"100%"}
+            width={{
+              base: "100%",
+              sm: "100%",
+              md: "87%",
+              lg: "90%",
+              xl: "83%",
+              "2xl":"86%"
+            }}
           >
             <Tab>
               <Text
