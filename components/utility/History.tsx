@@ -33,6 +33,7 @@ const History = observer(() => {
             size={{ base: "xs", sm: "sm", md: "md" }}
             _hover={{ bg: "#af1212", color: " white" }}
             onClick={onOpen}
+            py={'5px'}
           >
             ประวัติรายการอาหาร
           </Button>
