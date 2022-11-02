@@ -35,11 +35,11 @@ const Navbar = observer(({}: Props): ReactElement => {
           </Box>
         </div>
         <div className="grid grid-rows-3  md:pl-16 lg:pl-20 xl:pl-32">
-          <div className="row-start-2 flex  text-sm sm:text-sm xl:text-lg">
+          <div className="row-start-2 flex  text-base sm:text-base xl:text-lg">
             {`โต๊ะ:  `}{" "}
             <div className="text-[#D52D2C] font-semibold pl-1 "> A1</div>
           </div>
-          <div className="row-start-3 flex  text-xs sm:text-sm xl:text-lg pl">
+          <div className="row-start-3 flex  text-sm sm:text-sm xl:text-lg pl">
             {`หมดเวลา   `}{" "}
             <div className="text-[#D52D2C] font-semibold pl-1">
               {endTime} น.
