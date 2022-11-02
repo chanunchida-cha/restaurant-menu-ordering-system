@@ -21,7 +21,7 @@ const History = observer(() => {
   const btnRef = React.useRef(null);
 
   console.log(store.historyShow);
-  
+
   return (
     <>
       <div className="gird grid-cols-3">
@@ -45,7 +45,6 @@ const History = observer(() => {
         onClose={onClose}
         finalFocusRef={btnRef}
         size="md"
-        
       >
         <DrawerOverlay />
         <DrawerContent>
@@ -61,41 +60,69 @@ const History = observer(() => {
                   <>
                     {item.map((data, i: number) => {
                       return (
-                        <div
-                          key={i}
-                          className={index < 1 ?"mb-5 border-r-8 border-[#6095d2]":"mb-5 border-r-8 border-[#43a595]"}
+                       <div className={
+                        index < 1
+                          ? "mb-5 border-r-8 border-[#6095d2]"
+                          : "mb-5 border-r-8 border-[#43a595]"
+                      } key={data.id}>
+                         <div
+                          className="grid grid-cols-6 py-5  border-b"
+                          
                         >
-                          <div
-                            className="grid grid-cols-5 border-b"
-                            key={index}
-                          >
-                            <div >
-                              <Image
-                                display={{ xl: "block" }}
-                                mx={{ base: "auto", sm: "auto", xl: "auto" }}
-                                src={`/images/${data.src}`}
-                                alt={data.i18n}
-                                textAlign="center"
-                                my={{ base: "auto",xs:"auto", sm: "auto", xl: "auto" }}
-                                width={{
-                                  base: "80%",
-                                  sm: "60%",
-                                  md: "50%",
-                                  xl: "100%",
+                          <div className="col-start-1 ">
+                            <Image
+                              display={{ xl: "block" }}
+                              mx={{ base: "1", sm: 2, xl: "auto" }}
+                              src={`/images/${data.src}`}
+                              alt={data.i18n}
+                              textAlign="center"
+                              width={{
+                                base: "100%",
+                                sm: "60%",
+                                md: "60%",
+                                lg: "50%",
+                                xl: "80%",
+                              }}
+                              fontSize={{
+                                base: "sm",
+                                xs: "sm",
+                                sm: "sm",
+                                md: "md",
+                                lg: "md",
+                                xl: "md",
+                              }}
+                            />
+                          </div>
+                          <div className=" pt-3 pl-2 col-start-2 col-span-3  ">
+                            <div className="">
+                              <Box
+                                mt="1"
+                                fontWeight="semibold"
+                                as="h4"
+                                lineHeight="tight"
+                                noOfLines={1}
+                                fontSize={{
+                                  base: "sm",
+                                  xs: "sm",
+                                  sm: "sm",
+                                  md: "md",
+                                  lg: "md",
+                                  xl: "md",
                                 }}
-                              />
+                              >
+                                {data.i18n}
+                              </Box>
                             </div>
-                            <div className="col-span-2 grid grid-rows-3">
-                              <span className="row-start-2 text-xs sm:text-sm md:text-base inline-block align-middle">
-                                {data.i18n}  
-                              </span>
-                            </div>
-                            <div className="col-span-1 grid grid-rows-3">
-                              <div className="flex justify-start  row-start-2">
-                               x {data.amount}
+                          </div>
+                          <div className="col-span-2 ">
+                            <div className="grid grid-cols-3 ">
+                              <div className="col-span-1 grid grid-rows-3">
+                                <div className=" flex justify-start text-xs sm:text-sm  row-start-2">
+                                  x {data.amount}
+                                </div>
                               </div>
-                            </div>
-                            <div className="col-span-1 grid grid-rows-3">
+                              <div className="col-span-2 grid grid-rows-3">
+                                
                               <div className="flex text-xs sm:text-sm justify-end pr-10 row-start-2">
                                 {index < 1 ? (
                                   <Box display="flex" alignItems="baseline">
@@ -119,7 +146,6 @@ const History = observer(() => {
                                   <Box display="flex" alignItems="baseline">
                                     <Badge
                                       borderRadius="full"
-                            
                                       px="2"
                                       colorScheme="teal"
                                       fontSize={{
@@ -136,9 +162,11 @@ const History = observer(() => {
                                   </Box>
                                 )}
                               </div>
+                              </div>
                             </div>
                           </div>
                         </div>
+                       </div>
                       );
                     })}
                   </>
