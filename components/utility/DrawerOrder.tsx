@@ -61,7 +61,13 @@ const DrawerOrder = observer((props: Props) => {
         px={
           isDisplay
             ? { base: "10px", md: "30px" }
-            : { base: "120px",xxxs:"70px",xxs:"100px", sm: "150px",lg:"200px" }
+            : {
+                base: "120px",
+                xxxs: "70px",
+                xxs: "100px",
+                sm: "150px",
+                lg: "200px",
+              }
         }
         bg="#D52D2C"
         color=" white"
@@ -74,7 +80,7 @@ const DrawerOrder = observer((props: Props) => {
             {totalOrder > 0 && totalOrder}
           </>
         ) : (
-         `รายการอาหาร   ${totalOrder}`
+          `รายการอาหาร   ${totalOrder}`
         )}
       </Button>
 
@@ -102,75 +108,74 @@ const DrawerOrder = observer((props: Props) => {
                 })
                 .map((order, index: number) => {
                   return (
-                    <div className="grid grid-cols-6 py-5  border-b">
-                    <div className="col-start-1 ">
-                      <Image
-                        display={{ xl: "block" }}
-                        mx={{ base: "auto", sm: 2, xl: "auto" }}
-                        src={`/images/${order.src}`}
-                        alt={order.i18n}
-                        textAlign="center"
-                        width={{
-                          base: "100%",
-                          sm: "60%",
-                          md: "60%",
-                          lg: "50%",
-                          xl: "80%",
-                        }}
-                        fontSize={{
-                          base: "sm",
-                          xs: "sm",
-                          sm: "sm",
-                          md: "md",
-                          lg: "md",
-                          xl: "md",
-                        }}
-                      />
-                    </div>
-                    <div className=" pt-3 pl-2 col-start-2 col-span-3  ">
-                      <div className="">
-                       
-                            <Box
-                              mt="1"
-                              fontWeight="semibold"
-                              as="h4"
-                              lineHeight="tight"
-                              noOfLines={1}
-                              fontSize={{
-                                base: "sm",
-                                xs: "sm",
-                                sm: "sm",
-                                md: "md",
-                                lg: "md",
-                                xl: "md",
-                              }}
-                            >
-                              {order.i18n}
-                            </Box>
-                       
+                    <div
+                      className="grid grid-cols-6 py-5  border-b"
+                      key={order.id}
+                    >
+                      <div className="col-start-1 ">
+                        <Image
+                          display={{ xl: "block" }}
+                          mx={{ base: "auto", sm: 2, xl: "auto" }}
+                          src={`/images/${order.src}`}
+                          alt={order.i18n}
+                          textAlign="center"
+                          width={{
+                            base: "100%",
+                            sm: "60%",
+                            md: "60%",
+                            lg: "50%",
+                            xl: "80%",
+                          }}
+                          fontSize={{
+                            base: "sm",
+                            xs: "sm",
+                            sm: "sm",
+                            md: "md",
+                            lg: "md",
+                            xl: "md",
+                          }}
+                        />
                       </div>
-                    </div>
-
-                    <div className=" col-start-5 col-span-2 flex justify-end  ">
-                  
-                          {" "}
+                      <div className=" pt-3 pl-2 col-start-2 col-span-3  ">
+                        <div className="">
                           <Box
-                            pr="10px"
-                            display={"center"}
-                            alignItems="center"
-                            justifyContent={"center"}
+                            mt="1"
+                            fontWeight="semibold"
+                            as="h4"
+                            lineHeight="tight"
+                            noOfLines={1}
+                            fontSize={{
+                              base: "sm",
+                              xs: "sm",
+                              sm: "sm",
+                              md: "md",
+                              lg: "md",
+                              xl: "md",
+                            }}
                           >
-                            <ButtonAdd
-                              index={parseInt(order.id)}
-                              orders={orders}
-                              data={order}
-                              addToCart={addToCart}
-                              removeFromCart={removeFromCart}
-                            />
+                            {order.i18n}
                           </Box>
                         </div>
-                 
-                  </div>
+                      </div>
+
+                      <div className=" col-start-5 col-span-2 flex justify-end  ">
+                        {" "}
+                        <Box
+                          pr="10px"
+                          display={"center"}
+                          alignItems="center"
+                          justifyContent={"center"}
+                        >
+                          <ButtonAdd
+                            index={parseInt(order.id)}
+                            orders={orders}
+                            data={order}
+                            addToCart={addToCart}
+                            removeFromCart={removeFromCart}
+                          />
+                        </Box>
+                      </div>
+                    </div>
                   );
                 })}
             </DrawerBody>
