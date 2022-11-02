@@ -45,11 +45,12 @@ const History = observer(() => {
         onClose={onClose}
         finalFocusRef={btnRef}
         size="md"
+        
       >
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>ประวัติรายการอาหาร</DrawerHeader>
+          <DrawerHeader mt={"5"}>ประวัติรายการอาหาร</DrawerHeader>
 
           {store.order.length === 0 ? (
             <DrawerBody>ไม่มีประวัติรายการอาหาร</DrawerBody>
@@ -68,13 +69,14 @@ const History = observer(() => {
                             className="grid grid-cols-5 border-b"
                             key={index}
                           >
-                            <div>
+                            <div >
                               <Image
                                 display={{ xl: "block" }}
-                                mx={{ base: "auto", sm: 2, xl: "auto" }}
+                                mx={{ base: "auto", sm: "auto", xl: "auto" }}
                                 src={`/images/${data.src}`}
                                 alt={data.i18n}
                                 textAlign="center"
+                                my={{ base: "auto",xs:"auto", sm: "auto", xl: "auto" }}
                                 width={{
                                   base: "80%",
                                   sm: "60%",
@@ -84,17 +86,17 @@ const History = observer(() => {
                               />
                             </div>
                             <div className="col-span-2 grid grid-rows-3">
-                              <span className="row-start-2 inline-block align-middle">
+                              <span className="row-start-2 text-xs sm:text-sm md:text-base inline-block align-middle">
                                 {data.i18n}  
                               </span>
                             </div>
                             <div className="col-span-1 grid grid-rows-3">
-                              <div className="flex justify-start pr-10 row-start-2">
+                              <div className="flex justify-start  row-start-2">
                                x {data.amount}
                               </div>
                             </div>
                             <div className="col-span-1 grid grid-rows-3">
-                              <div className="flex justify-end pr-10 row-start-2">
+                              <div className="flex text-xs sm:text-sm justify-end pr-10 row-start-2">
                                 {index < 1 ? (
                                   <Box display="flex" alignItems="baseline">
                                     <Badge
@@ -117,6 +119,7 @@ const History = observer(() => {
                                   <Box display="flex" alignItems="baseline">
                                     <Badge
                                       borderRadius="full"
+                            
                                       px="2"
                                       colorScheme="teal"
                                       fontSize={{

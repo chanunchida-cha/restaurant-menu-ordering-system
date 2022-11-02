@@ -79,7 +79,7 @@ function Home() {
   const totalOrder = orders.reduce((prev, cur) => Number(cur.amount) + prev, 0);
 
   return (
-    <div className=" z-10 mt-24">
+    <div className=" z-10 mt-24 bg-white h-full min-h-screen">
       <div className="fixed w-screen left-0 right-0 z-20 bg-white">
         <div className="mx-3 sm:mx-3 md:mx-12 lg:mx-12 xl:mx-36">
           <div className="relative ">
@@ -90,7 +90,6 @@ function Home() {
               onChange={(e) => {
                 setSearchText(e.target.value);
               }}
-            
             />
             <div className="flex absolute inset-y-0 right-0 items-center pr-3 pointer-events-none">
               <svg

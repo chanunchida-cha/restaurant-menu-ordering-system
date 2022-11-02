@@ -11,6 +11,8 @@ import {
   useDisclosure,
   Button,
   useToast,
+  Box,
+  Badge,
 } from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
 import { store } from "store/store";
@@ -100,39 +102,75 @@ const DrawerOrder = observer((props: Props) => {
                 })
                 .map((order, index: number) => {
                   return (
-                    <div className="grid grid-cols-5 border-b" key={index}>
-                      <div>
-                        <Image
-                          display={{ xl: "block" }}
-                          mx={{ base: "auto", sm: 2, xl: "auto" }}
-                          src={`/images/${order.src}`}
-                          alt={order.i18n}
-                          textAlign="center"
-                          width={{
-                            base: "80%",
-                            sm: "60%",
-                            md: "50%",
-                            xl: "100%",
-                          }}
-                        />
-                      </div>
-                      <div className="col-span-2 grid grid-rows-3">
-                        <span className="row-start-2 inline-block align-middle">
-                          {order.i18n}
-                        </span>
-                      </div>
-                      <div className="col-span-2 grid grid-rows-3">
-                        <div className="row-start-2">
-                          <ButtonAdd
-                            index={parseInt(order.id)}
-                            data={order}
-                            orders={orders}
-                            addToCart={addToCart}
-                            removeFromCart={removeFromCart}
-                          />
-                        </div>
+                    <div className="grid grid-cols-6 py-5  border-b">
+                    <div className="col-start-1 ">
+                      <Image
+                        display={{ xl: "block" }}
+                        mx={{ base: "auto", sm: 2, xl: "auto" }}
+                        src={`/images/${order.src}`}
+                        alt={order.i18n}
+                        textAlign="center"
+                        width={{
+                          base: "100%",
+                          sm: "60%",
+                          md: "60%",
+                          lg: "50%",
+                          xl: "80%",
+                        }}
+                        fontSize={{
+                          base: "sm",
+                          xs: "sm",
+                          sm: "sm",
+                          md: "md",
+                          lg: "md",
+                          xl: "md",
+                        }}
+                      />
+                    </div>
+                    <div className=" pt-3 pl-2 col-start-2 col-span-3  ">
+                      <div className="">
+                       
+                            <Box
+                              mt="1"
+                              fontWeight="semibold"
+                              as="h4"
+                              lineHeight="tight"
+                              noOfLines={1}
+                              fontSize={{
+                                base: "sm",
+                                xs: "sm",
+                                sm: "sm",
+                                md: "md",
+                                lg: "md",
+                                xl: "md",
+                              }}
+                            >
+                              {order.i18n}
+                            </Box>
+                       
                       </div>
                     </div>
+
+                    <div className=" col-start-5 col-span-2 flex justify-end  ">
+                  
+                          {" "}
+                          <Box
+                            pr="10px"
+                            display={"center"}
+                            alignItems="center"
+                            justifyContent={"center"}
+                          >
+                            <ButtonAdd
+                              index={parseInt(order.id)}
+                              orders={orders}
+                              data={order}
+                              addToCart={addToCart}
+                              removeFromCart={removeFromCart}
+                            />
+                          </Box>
+                        </div>
+                 
+                  </div>
                   );
                 })}
             </DrawerBody>
