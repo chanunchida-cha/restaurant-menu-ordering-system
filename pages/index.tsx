@@ -41,11 +41,11 @@ const Page: NextPageWithLayout = () => {
         <div className="w-screen h-screen bg-white grid grid-cols-3  grid-rows-5 z-50 bg-opacity-50 top-0 left-0 bottom-0 right-0 fixed sticky-0 overflow-y-hidden">
           <div className="col-start-2 row-start-3  block mx-auto ">
             {" "}
-            <Spinner size="xl" color="red.500" />
+            {/* <Spinner size="xl" color="red.500" /> */}
           </div>
         </div>
       ) : null}
-      <Home />
+      <Home loading={loading} />
     </>
   );
 };

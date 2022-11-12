@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Input, SimpleGrid, Text, useMediaQuery } from "@chakra-ui/react";
+import {
+  Input,
+  SimpleGrid,
+  SkeletonText,
+  Text,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import axios from "axios";
 import useSWR from "swr";
@@ -11,7 +17,11 @@ import { category } from "@/models/const/category";
 
 const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
-function Home() {
+type Props = {
+  loading: boolean;
+};
+
+function Home({ loading: load }: Props) {
   const [searchText, setSearchText] = useState("");
   const [orders, setOrders] = useState([] as Order[]);
   const [isMaxWidth767, isMinToMAX, isDisplay] = useMediaQuery([
@@ -186,32 +196,36 @@ function Home() {
             }}
           >
             <Tab>
-              <Text
-                fontSize={{
-                  base: "md",
-                  sm: "md",
-                  md: "md",
-                  lg: "md",
-                  xl: "lg",
-                }}
-              >
-                ทั้งหมด
-              </Text>
+              <SkeletonText noOfLines={1} spacing="2" isLoaded={!load}>
+                <Text
+                  fontSize={{
+                    base: "md",
+                    sm: "md",
+                    md: "md",
+                    lg: "md",
+                    xl: "lg",
+                  }}
+                >
+                  ทั้งหมด
+                </Text>
+              </SkeletonText>
             </Tab>
             {category.map((cat, index: number) => {
               return (
                 <Tab key={index}>
-                  <Text
-                    fontSize={{
-                      base: "md",
-                      sm: "md",
-                      md: "md",
-                      lg: "md",
-                      xl: "lg",
-                    }}
-                  >
-                    {cat.i18n}
-                  </Text>
+                  <SkeletonText noOfLines={1} spacing="2" isLoaded={!load}>
+                    <Text
+                      fontSize={{
+                        base: "md",
+                        sm: "md",
+                        md: "md",
+                        lg: "md",
+                        xl: "lg",
+                      }}
+                    >
+                      {cat.i18n}
+                    </Text>
+                  </SkeletonText>
                 </Tab>
               );
             })}
@@ -221,6 +235,7 @@ function Home() {
         <TabPanels>
           <TabPanel>
             <ContentPanel
+              load={load}
               food={food}
               orders={orders}
               addToCart={addToCart}
@@ -239,6 +254,7 @@ function Home() {
                   removeFromCart={removeFromCart}
                   type={cat.key}
                   searchText={searchText}
+                  load={load}
                 />
               </TabPanel>
             );
