@@ -22,6 +22,7 @@ type Props = {
 };
 
 function Home({ loading: load }: Props) {
+  let test = 1;
   const [searchText, setSearchText] = useState("");
   const [orders, setOrders] = useState([] as Order[]);
   const [isMaxWidth767, isMinToMAX, isDisplay] = useMediaQuery([
